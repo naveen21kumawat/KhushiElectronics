@@ -1,12 +1,11 @@
-import React from "react";
-import RefurbishedShopPage from "./components/RefurbishedShop";
+import React from 'react'
+import './App.css'
+import Navbar from './components/Navbar'
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <RefurbishedShopPage/>
-    </div>
-  );
+    <>
+    <Navbar/>
+    </>
+  )
 }
-
-export default App;
