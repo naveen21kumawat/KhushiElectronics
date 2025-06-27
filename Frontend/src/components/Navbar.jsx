@@ -11,8 +11,8 @@ import {
 function Navbar() {
   return (
     <>
-      <div className="nav w-full shadow-md hover:shadow-2xl transition translet duration-300 border-2 text-black shadow-2xl flex justify-between items-center px-4">
-        <div className="shop-name w-1/4 italic text-2xl">KhusiLaptop</div>
+      <div className="nav w-full flex background-white  shadow-lg rounded-lgx px-4">
+        <div className="shop-name w-1/4 italic px-2 text-2xl">KhushiLaptop</div>
         <ul className="text-blue-900 w-3/4 m-2 flex  justify-center items-center gap-8  p-2">
           <li>
             <a href="home">

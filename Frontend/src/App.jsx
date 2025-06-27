@@ -2,12 +2,15 @@ import React from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import RefurbishedLaptopShop from './components/RefurbishedLaptopShop'
+import Hero from './components/Hero'
 
 export default function App() {
   return (
     <>
     <Navbar/>
-    <RefurbishedLaptopShop/>
+    <Hero/>
+
+    {/* <RefurbishedLaptopShop/> */}
     </>
   )
 }
