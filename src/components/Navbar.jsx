@@ -1,14 +1,13 @@
 import React from 'react'
-import '../App.css' // Ensure Tailwind CSS is imported
-
+import '../App.css' 
 
 function Navbar() {
   return (
     <>
-    <div className="nav  text-white flex justify-between items-center p-4">
+    <div className="nav text-black flex justify-between items-center p-4">
       <div className="shop-name">KhusiLaptop</div>
-      <ul className="nav-links">
-        <li className='text-red-900'>Home</li>
+      <ul className="nav-links text-blue-900 flex gap-4">
+        <li >Home</li>
         <li>Shop</li>
         <li>Contact</li>
       </ul>
