@@ -1,0 +1,112 @@
+import React from "react";
+
+const laptops = [
+  {
+    name: "HP EliteBook 840",
+    price: "$450",
+    specs: "Processor / 4.4G SB",
+  },
+  {
+    name: "Dell Latitude 5400",
+    price: "$400",
+    specs: "Processor / 4GB",
+  },
+  {
+    name: "Lenovo ThinkPad",
+    price: "$420",
+    specs: "Processor / 4.SSD",
+  },
+  {
+    name: "Apple MacBook Air",
+    price: "$600",
+    specs: "Processor / 15SD",
+  },
+];
+
+ function RefurbishedLaptopShop() {
+  return (
+    <div className="bg-white min-h-screen font-sans">
+      <div className="text-center py-10 px-4">
+        <h1 className="text-4xl font-bold mb-2">
+          Top Quality Refurbished Laptops
+        </h1>
+        <h2 className="text-2xl font-semibold text-gray-700 mb-6">
+          at Unbeatable Prices
+        </h2>
+        <div className="flex justify-center gap-4">
+          <button className="bg-blue-600 text-white px-6 py-2 rounded">Shop Now</button>
+          <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded">
+            View Deals
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-6 mb-6">
+        {['Brand', 'Price Range', 'RAM', 'Storage'].map((filter) => (
+          <select key={filter} className="border p-2 rounded">
+            <option>{filter === 'Brand' ? 'All' : 'Any'}</option>
+          </select>
+        ))}
+      </div>
+
+      <div className="px-6">
+        <h3 className="text-2xl font-semibold mb-4">Featured Laptops</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {laptops.map((laptop) => (
+            <div key={laptop.name} className="border p-4 rounded shadow">
+              <div className="h-32 bg-gray-100 mb-4 flex items-center justify-center">
+                <span className="text-gray-400">Image</span>
+              </div>
+              <h4 className="font-semibold">{laptop.name}</h4>
+              <p className="text-blue-600 font-bold">{laptop.price}</p>
+              <p className="text-sm text-gray-600">{laptop.specs}</p>
+              <button className="mt-2 bg-blue-600 text-white w-full py-1 rounded">
+                View Details
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="px-6 mt-10 text-center">
+        <h3 className="text-2xl font-semibold mb-4">Why Choose Us?</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {['Thoroughly Tested', '1-Year Warranty', 'Free Shipping', 'Customer Support'].map((item) => (
+            <div key={item} className="flex flex-col items-center">
+              <div className="bg-blue-100 text-blue-600 w-12 h-12 flex items-center justify-center rounded-full mb-2">
+                ✓
+              </div>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="px-6 mt-12 text-center italic">
+        <p className="text-lg">"Great quality laptop at a fraction of the price. Highly recommend this shop."</p>
+        <p className="mt-2 text-sm text-gray-600">- Sarah M.</p>
+      </div>
+
+      <div className="px-6 py-10 grid md:grid-cols-2 gap-8 mt-8">
+        <div>
+          <h4 className="text-xl font-semibold mb-2">Testimonials</h4>
+          <p className="text-gray-600">
+            Great-quality laptop at a fraction of the office flagship. Recommend.
+          </p>
+        </div>
+        <div>
+          <h4 className="text-xl font-semibold mb-2">Subscribe to Our Newsletter</h4>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="border p-2 w-full rounded mb-2"
+          />
+          <button className="bg-blue-600 text-white w-full py-2 rounded">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+export default RefurbishedLaptopShop;
