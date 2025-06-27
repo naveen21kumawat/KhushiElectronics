@@ -84,7 +84,7 @@ const laptops = [
 
       <div className="px-6 mt-12 text-center italic">
         <p className="text-lg">"Great quality laptop at a fraction of the price. Highly recommend this shop."</p>
-        <p className="mt-2 text-sm text-gray-600">- Sarah M.</p>
+        <p className="mt-2 text-sm text-gray-600">- KhushiLaptops</p>
       </div>
 
       <div className="px-6 py-10 grid md:grid-cols-2 gap-8 mt-8">
