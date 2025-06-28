@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
-
+const dbconnect = require('./config/db');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Connect to the database
+dbconnect();
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the Laptop Store API');  
+});
 
 app.get('/laptopDetails', (req, res) => {
   res.json([
