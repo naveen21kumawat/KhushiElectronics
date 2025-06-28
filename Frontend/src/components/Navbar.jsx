@@ -11,10 +11,12 @@ import {
 function Navbar() {
   return (
     <>
-      <div className="nav w-full flex background-white  shadow-lg rounded-lgx px-4">
-        <div className="shop-name w-1/4 italic px-2 text-2xl">KhushiLaptop</div>
-        <ul className="text-blue-900 w-3/4 m-2 flex  justify-center items-center gap-8  p-2">
-          <li>
+      <div className="nav w-full flex   shadow-lg rounded-lgx px-4">
+        <div className="shop-name bg- w-1/4 italic px-2 m-auto  p-1 text-center ">
+        <marquee className='text-purple-800' behavior="rigth" direction="">Welcome To Khushi Laptop</marquee>
+        Khushi Laptop</div>
+        <ul className="text-blue-900 w-3/4 m-2 border-2 bg-white flex  justify-center items-center gap-8  p-2">
+          <li className="text-blue-900 hover:text-blue-600 border-3 transition duration-300">
             <a href="home">
               <FontAwesomeIcon className="mx-2" icon={faHouse} />
               Home

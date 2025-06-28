@@ -1,6 +1,26 @@
 import React from "react";
 
 const laptops = [
+    {
+    name: "HP EliteBook 840",
+    price: "$450",
+    specs: "Processor / 4.4G SB",
+  },
+  {
+    name: "Dell Latitude 5400",
+    price: "$400",
+    specs: "Processor / 4GB",
+  },
+  {
+    name: "Lenovo ThinkPad",
+    price: "$420",
+    specs: "Processor / 4.SSD",
+  },
+  {
+    name: "Apple MacBook Air",
+    price: "$600",
+    specs: "Processor / 15SD",
+  },
 
 ];
 
@@ -49,7 +69,7 @@ const laptops = [
         </div>
       </div>
 
-      <div className="px-6 mt-10 text-center">
+      {/* <div className="px-6 mt-10 text-center">
         <h3 className="text-2xl font-semibold mb-4">Why Choose Us?</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {['Thoroughly Tested', '1-Year Warranty', 'Free Shipping', 'Customer Support'].map((item) => (
@@ -61,8 +81,8 @@ const laptops = [
             </div>
           ))}
         </div>
-      </div>
-
+      </div> 
+{/* 
       <div className="px-6 mt-12 text-center italic">
         <p className="text-lg">"Great quality laptop at a fraction of the price. Highly recommend this shop."</p>
         <p className="mt-2 text-sm text-gray-600">- KhushiLaptops</p>
@@ -86,8 +106,8 @@ const laptops = [
             Subscribe
           </button>
         </div>
-      </div>
-    </div>
+      </div>*/}
+      </div> 
   );
 }
 export default RefurbishedLaptopShop;
