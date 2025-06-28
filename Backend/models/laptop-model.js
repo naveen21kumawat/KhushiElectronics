@@ -63,7 +63,7 @@ const laptopDetailsSchema = new mongoose.Schema({
     },
     warranty: {
         type: String,
-        default: "1 Year"
+        default: "3 Months"
     },
     discount: {
         type: Number,

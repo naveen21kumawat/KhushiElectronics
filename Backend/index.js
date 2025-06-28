@@ -7,7 +7,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Connect to the database
 dbconnect();
+app.set('view engine', 'ejs')
 
+
+//Frontend APIS
 app.get('/api', (req, res) => {
   res.send('Welcome to the Laptop Store API');  
 });
@@ -40,6 +43,11 @@ app.get('/laptopDetails', (req, res) => {
 
 // app.use('/api/laptop', laptopRoute);
 
+
+//Backend Admin Panel
+app.get('/',(req,res)=>{
+  res.render("index")
+})
 app.listen(5000, () => {
   console.log('Server is running on port 5000');
 }
