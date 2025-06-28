@@ -5,7 +5,7 @@ const cloudinary = require('../config/cloudinary-config');
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'laptops', // folder name in Cloudinary
+    folder: 'laptops',
     allowed_formats: ['jpg', 'png', 'jpeg']
   }
 });

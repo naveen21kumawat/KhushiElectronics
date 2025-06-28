@@ -3,11 +3,12 @@ const app = express();
 const dbconnect = require('./config/db');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// const laptopRoute=require('./routes/laptop')
 
 // Connect to the database
 dbconnect();
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Welcome to the Laptop Store API');  
 });
 
@@ -36,6 +37,8 @@ app.get('/laptopDetails', (req, res) => {
   ]);
 }
 );
+
+// app.use('/api/laptop', laptopRoute);
 
 app.listen(5000, () => {
   console.log('Server is running on port 5000');
