@@ -1,43 +1,0 @@
-
-var ftGUID_9154123="6128D4575251F1";
-var ftConfID_9154123="0";
-var ftParams_9154123="ftOBA=1&ft_domain=pngtree.com&ft_ifb=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fpngtree.com%2F&gdpr=0&ftClick=https://adclick.g.doubleclick.net/aclk?sa=L&ai=CE3WXlx9gaJjcCuDC4t4PyaqvuQOI76j0XN69t5avAcCNtwEQASAAYOXy54PUDoIBF2NhLXB1Yi0xMzM2NjcwODk5MTczMzIzyAEJqAMByAMCqgTeAU_Q2y1ZyW-WZLrWf31SMVngqMi80PwO4QivP5rAVZ86Jb4H1HzSv49xwIU_vaNehNg-8UViEMbLycWP4G2kDNZWTqLriGeEtPgv-yUu5CsNsEvi1mN8mRit7RwPRr_7mPdrOHqk2bMmr6yolgvBTluDpvPv-oKn8AgCqVKmtFwwA5BIfJDYN9_R58RdB_4uyUG5_GnldXvG12mdJKWfWQO2HJpOOTNyIK3Vh3aUSN5sRYEhkXhJGfBDH-6j01pRXRQZziOcYqWY5jlQWJkLTZvFkGk096aktjOeNSS_a4AG4Nm3oo6RkYOhAaAGIagHpr4bqAeW2BuoB6qbsQKoB_-esQKoB9-fsQKoB62-sQKoB7_TsQLYBwDSCCYIgGEQATICigI6DYBAgMCAgICAqIACqANIvf3BOli-5aHQy5SOA_oLAggBgAwBqg0CSU7qDRMIzPCr0MuUjgMVYKHYBR1J1Ss30BUBgBcBshcQGAwqCjU1NDUyODU0MjFQAQ&num=1&sig=AOD64_33NJ1PzmjVRTaJbnZdMyyv3r_1cA&client=ca-pub-1336670899173323&adurl=https://exch.quantserve.com/r?&a=p-1RYxePXT9bCS2&labels=_qc.clk,_click.adserver.rtb,_click.rand.1682961624&rtbip=103.229.8.9&rtbdata2=EAA6E2h0dHBzOi8vcG5ndHJlZS5jb21aKFU1N1hyRmFZMVBaSXl0WDBBNV9LclZYTDBQRkl6TkNpVUpfU3J5NnWAAbHDxuMIugEbQ0FFU0VEaEQ5YTFMdmkyUHZQY2gxWjJGTmI4wAHo7AjIAerN7bv7MtoBFkJaei1vT3Z2SG1nZk9iaWhuVGVtbkGwAgjIAgDQAs7hhvv4n_fMqQHoAlryAg8IlYYxENSu8YKX5rvegwHyAg0IWhCbn6nHiK3yzaUB-AIAigMWMC5wdWItMTMzNjY3MDg5OTE3MzMyM5gDAKgDALIDECQCOoBADwAAAAAAAAAAAAC6AxIJ30pF92LC3KYRtxhU3dRqMKbCAxIJiUFxBraI1HwR3T7CHfThTKPIA4SAgIYB2APY6b-iBuIDD3AtMVJZeGVQWFQ5YkNTMuoDBQjYBRBa8gMGMzIyMjU1-AMAgASYNIoEAjc3mgQSCdFK_x-tG-29EQaYw1mVteqYogQSCd9KRfdiwtymEbcYVN3UajCmqgQSCd9KRfdiwtymEbcYVN3UajCmuATQBdAEHvIEAklOgAUBigUAkAUBuAUAwAWolsDdCcgFm9mpBNIFBggEEAIYAugFBZoGFAoSCdFK_x-tG-29EQaYw1mVteqYoAYAtQZF8r04ugZHCgJJThICUkoYACIFcnVuZGkqBjMyMjI1NToVdm9kYWZvbmUlMjBpZGVhJTIwbHRkWhV2b2RhZm9uZSUyMGlkZWElMjBsdGTJBtUIEur-lecL0AY42AY44gY_X2ZwLmV2ZW50LkNDIFBhaWQgQ29udmVyc2lvbixfZnAuZXZlbnQuQ0MgVHJpYWwgQ29udmVyc2lvbixfb3Jf6gYRaHR0cHM6Ly9hZG9iZS5jb23xBgIYEur-lecL-AYDgAcAigcSCYlBcQa2iNR8Ed0-wh304Uyj&redirecturl3=&ft_custom=ZeEftEj0E-9v1gL_aNkM8UnvAPRJ-l-xr04=&site_url=pngtree.com&cachebuster=11610.577215730444";
-var ftKeyword_9154123="";
-var ftCustom_9154123="ZeEftEj0E-9v1gL_aNkM8UnvAPRJ-l-xr04=";
-var ftSection_9154123="";
-var ftSegment_9154123="afr5";
-var ftSegmentList_9154123=[{s:'afr5'}];
-var ftRuleMatch_9154123="0";
-var ftTimestamp_9154123="1751130067";
-var ftGeoC2_9154123="in";
-var ftGeoState_9154123="rj";
-var ftGeoCity_9154123="jaisinghpura";
-var ftISP_9154123="vodafone idea ltd";
-var ftSpeed_9154123="mobile";
-var ftConnType_9154123="mobile";
-var ftDMA_9154123="-1";
-var ftLong_9154123="76.93";
-var ftLat_9154123="26.84";
-var ftPostal_9154123="322254";
-var ftTimeZone_9154123="+530";
-var ftMobileCarrier_9154123="vi india";
-var ftImp9154123 = {};
-ftImp9154123.privacy = "x";
-ftImp9154123.guidAge = "260";
-ftImp9154123.impID = "8850FB31-CDD7-2005-D285-705A00D0A2C3";
-ftImp9154123.duid = "FT:6128D4575251F1";
-
-ftImp9154123.ft_tpplid = "";
-ftImp9154123.ft_c = {};
-ftImp9154123.gdpr = "0";
-ftImp9154123.gdpr_consent = "";
-ftImp9154123.gdpr_pd = "";
-ftImp9154123.oob_consent = "";
-ftImp9154123.gdprStoredConsent = "";
-ftImp9154123.us_privacy = "";
-ftImp9154123.gpc = "";
-
-ftImp9154123.jsAppend = "1";
-var ftCreativeId_9154123 = "4691269";
-(function(){var tag=document.getElementById("ft_servedby_9154123")||function(s){return s[s.length-1]}(document.getElementsByTagName("script")),js=document.createElement("script");js.src="https://ajs-assets.ftstatic.com/ftUtils.js";js.id="ftscript_m9154123";js.setAttribute("name","ftscript_m9154123");tag.parentNode.insertBefore(js,tag)})();window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("9154123");
-

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 
 
- function RefurbishedLaptopShop() {
+  const displayLaptops = laptops.length > 0 ? laptops : fallbackLaptops;
+
   return (
     <div className="bg-white min-h-screen font-sans">
       <div className="text-center py-10 px-4">
