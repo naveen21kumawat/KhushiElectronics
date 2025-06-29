@@ -3,8 +3,8 @@ import React from "react";
 function Hero() {
   return (
     <>
-      <div className="hero w-full flex-wrap flex justify-around p-10 shadow-t  rounded-lgx px-4">
-        <div className="hero-content  text-center item-center w-1/2  justify-center flex flex-col gap-4">
+      <div className="hero w-full flex-wrap  flex border-2 p-10 shadow-t justify-around rounded-lgx px-4">
+        <div className="hero-content p-10 text-center border-2 item-center w-3/5  justify-center flex flex-col gap-4">
           <h1 className="text-4xl font-bold mb-2">
             Top Quality Refurbished Laptops
           </h1>
@@ -21,9 +21,9 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hero-image w-1/2">
-          <div className="h-64 bg-gray-100 mb-4 flex items-center justify-center">
-            <span className="text-gray-400">Image Placeholder</span>
+        <div className="hero-image w-2/5 border-2 p-5  overflow-hidden rounded-lg">
+          <div className=" bg-gray-100 mb-4 flex items-center justify-center w-full obeject-cover rounded-lg">
+            <img className="w-full"  src="hs" alt="" />
           </div>
         </div>
       </div>

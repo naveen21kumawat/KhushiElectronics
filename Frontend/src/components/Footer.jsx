@@ -48,7 +48,7 @@ function Footer() {
             </span>
             <span className="e text-xs flex gap-3">
               <h1>Naveen Kumawat</h1>
-            <a href="https://naveencodes.netlify.app/" className="text-xs text-blue-900 font-bold border-2 bg-blue-300 px-2">Click Here TO Contact</a>
+            <a href="https://naveencodes.netlify.app/" className="text-xs text-white-900 font-bold border-2  px-2">Click Here TO Contact</a>
             </span>
           </div>
 
@@ -63,7 +63,7 @@ function Footer() {
             </span>
             <span className=" text-xs flex gap-3">
               <h1>Manish Prajapati</h1>
-            <a href="https://mypersonalpfolio.netlify.app/" className="text-xs text-blue-900 font-bold border-2 bg-blue-300 px-2">Click Here TO Contact</a>
+            <a href="https://mypersonalpfolio.netlify.app/" className="text-xs text-white-900 font-bold border-2 px-2">Click Here TO Contact</a>
             </span>
           </div>
          
