@@ -1,7 +1,16 @@
 import React, { useEffect } from "react";
 
+// Dummy data for demonstration
+const fallbackLaptops = [
+  { id: 1, name: "Dell Latitude 7490", price: "₹32,000" },
+  { id: 2, name: "HP EliteBook 840 G5", price: "₹34,500" },
+  { id: 3, name: "Lenovo ThinkPad T480", price: "₹31,000" },
+];
 
+// You can fetch laptops from API or use state, for now, we'll use an empty array to trigger fallback
+const laptops = [];
 
+function RefurbishedLaptopShop() {
   const displayLaptops = laptops.length > 0 ? laptops : fallbackLaptops;
 
   return (
@@ -21,7 +30,15 @@ import React, { useEffect } from "react";
         </div>
       </div>
 
-    
+      {/* Example: Display laptops */}
+      <div className="px-6 mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {displayLaptops.map((laptop) => (
+          <div key={laptop.id} className="border rounded-lg p-4 shadow">
+            <h3 className="font-semibold text-lg mb-2">{laptop.name}</h3>
+            <p className="text-blue-600 font-bold">{laptop.price}</p>
+          </div>
+        ))}
+      </div>
 
       {/* <div className="px-6 mt-10 text-center">
         <h3 className="text-2xl font-semibold mb-4">Why Choose Us?</h3>
