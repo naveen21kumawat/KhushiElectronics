@@ -1,20 +1,27 @@
 const express = require('express');
 const app = express();
 const dbconnect = require('./config/db');
+const laptopRoute = require('./routes/laptop');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// const laptopRoute=require('./routes/laptop')
 
 // Connect to the database
 dbconnect();
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
+// Static files
+app.use(express.static('public'));
 
-//Frontend APIS
+// API Routes
+app.use('/api', laptopRoute);
+
+// Frontend API - Welcome message
 app.get('/api', (req, res) => {
-  res.send('Welcome to the Laptop Store API');  
+  res.send('Welcome to the Khushi Laptops API');  
 });
 
+// Legacy endpoint for backward compatibility
 app.get('/laptopDetails', (req, res) => {
   res.json([
      {
@@ -38,18 +45,33 @@ app.get('/laptopDetails', (req, res) => {
     specs: "Processor / 15SD",
   },
   ]);
-}
-);
+});
 
-// app.use('/api/laptop', laptopRoute);
+// Admin Dashboard Route
+app.get('/', (req, res) => {
+  res.render("index");
+});
 
+// Error handling middleware
+app.use((error, req, res, next) => {
+  console.error('Error:', error);
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'
+  });
+});
 
-//Backend Admin Panel
-app.get('/',(req,res)=>{
-  res.render("index")
-})
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
+});
+
 app.listen(5000, () => {
-  console.log('Server is running on port 5000');
-}
-);
-
+  console.log('🚀 Server is running on port 5000');
+  console.log('📊 Admin Dashboard: http://localhost:5000');
+  console.log('🔗 API Base URL: http://localhost:5000/api');
+}); 
