@@ -1,30 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const laptops = [
+function RefurbishedLaptopShop() {
+  const [laptops, setLaptops] = React.useState([]);
+
+  useEffect(() => {
+    // Fetch laptop data from the API
+    fetch('http://localhost:5000/api/products')
+      .then(response => response.json())
+      .then(data => {
+        // Update the state with fetched data
+        console.log('Fetched laptop data:', data);
+        setLaptops(data);
+      })
+      .catch(error => {
+        console.error('Error fetching laptop data:', error);
+      });
+  }, []);
+
+  // fallback data if API fails or is empty
+  const fallbackLaptops = [
     {
-    name: "HP EliteBook 840",
-    price: "$450",
-    specs: "Processor / 4.4G SB",
-  },
-  {
-    name: "Dell Latitude 5400",
-    price: "$400",
-    specs: "Processor / 4GB",
-  },
-  {
-    name: "Lenovo ThinkPad",
-    price: "$420",
-    specs: "Processor / 4.SSD",
-  },
-  {
-    name: "Apple MacBook Air",
-    price: "$600",
-    specs: "Processor / 15SD",
-  },
+      name: "HP EliteBook 840",
+      price: "$450",
+      specs: "Processor / 4.4G SB",
+    },
+    {
+      name: "Dell Latitude 5400",
+      price: "$400",
+      specs: "Processor / 4GB",
+    },
+    {
+      name: "Lenovo ThinkPad",
+      price: "$420",
+      specs: "Processor / 4.SSD",
+    },
+    {
+      name: "Apple MacBook Air",
+      price: "$600",
+      specs: "Processor / 15SD",
+    },
+  ];
 
-];
+  const displayLaptops = laptops.length > 0 ? laptops : fallbackLaptops;
 
- function RefurbishedLaptopShop() {
   return (
     <div className="bg-white min-h-screen font-sans">
       <div className="text-center py-10 px-4">
@@ -53,10 +71,10 @@ const laptops = [
       <div className="px-6">
         <h3 className="text-2xl font-semibold mb-4">Featured Laptops</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {laptops.map((laptop) => (
+          {displayLaptops.map((laptop) => (
             <div key={laptop.name} className="border p-4 rounded shadow">
               <div className="h-32 bg-gray-100 mb-4 flex items-center justify-center">
-                <span className="text-gray-400">Image</span>
+                <span className="text-gray-400"><img src={laptop.image} alt="" /></span>
               </div>
               <h4 className="font-semibold">{laptop.name}</h4>
               <p className="text-blue-600 font-bold">{laptop.price}</p>
