@@ -3,7 +3,7 @@ import React from "react";
 function Hero() {
   return (
     <>
-      <div className="hero w-full flex-wrap flex justify-around p-10 shadow-lg rounded-lgx px-4">
+      <div className="hero w-full flex-wrap flex justify-around p-10 shadow-t  rounded-lgx px-4">
         <div className="hero-content  text-center item-center w-1/2  justify-center flex flex-col gap-4">
           <h1 className="text-4xl font-bold mb-2">
             Top Quality Refurbished Laptops
