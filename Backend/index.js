@@ -1,9 +1,12 @@
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const dbconnect = require('./config/db');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 const laptopRoute = require('./routes/laptop');
+const authRoute = require('./routes/auth');
+
 
 
 // Enable CORS for all routes
@@ -21,6 +24,7 @@ app.use(express.static('public'));
 
 // API Routes
 app.use('/api', laptopRoute);
+app.use('/', authRoute);
 
 // Frontend API - Welcome message
 app.get('/api', (req, res) => {
@@ -53,10 +57,6 @@ app.get('/laptopDetails', (req, res) => {
   ]);
 });
 
-// Admin Dashboard Route
-app.get('/', (req, res) => {
-  res.render("index");
-});
 
 // Error handling middleware
 app.use((error, req, res, next) => {
