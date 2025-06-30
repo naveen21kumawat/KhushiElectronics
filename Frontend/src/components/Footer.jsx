@@ -22,6 +22,14 @@ function Footer() {
         >
           Terms of Service
         </a>
+        <a
+          href="/location"
+          className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-
+          2 px-4 rounded inline-block"
+          rel="noopener noreferrer"
+        >
+          Location
+        </a>
       </div>
       <div className="container w-1/3 mx-auto text-center">
         <p className="text-sm">

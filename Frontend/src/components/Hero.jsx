@@ -5,7 +5,7 @@ function Hero() {
   return (
     <>
       <div className="hero w-full flex-wrap  flex border-2 p-10 shadow-t justify-around rounded-lgx px-4">
-        <div className="hero-content p-10 text-center border-2 item-center w-3/5  justify-center flex flex-col gap-4">
+        <div className="hero-content p-10 text-center border-2 item-center w-1/2  justify-center flex flex-col gap-4">
           <h1 className="text-4xl font-bold mb-2">
             Top Quality Refurbished Laptops
           </h1>

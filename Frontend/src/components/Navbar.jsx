@@ -5,6 +5,8 @@ import {
   faContactCard,
   faHouse,
   faShop,
+  faStar,
+  faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -32,6 +34,12 @@ function Navbar() {
             <Link to="/about">
               <FontAwesomeIcon className="mx-2" icon={faContactCard} />
               Contact
+            </Link>
+          </li>
+          <li>
+            <Link to="/review" className="border-2">
+              <FontAwesomeIcon className="mx-2 border-2 " icon={faStar} />
+             Customer Review
             </Link>
           </li>
         </ul>
