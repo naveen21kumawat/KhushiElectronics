@@ -2,11 +2,11 @@ import React from "react";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCoffee,
   faContactCard,
   faHouse,
   faShop,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -17,22 +17,22 @@ function Navbar() {
         Khushi Laptop</div>
         <ul className="text-blue-900 w-3/4 m-2 border-2 bg-white flex  justify-center items-center gap-8  p-2">
           <li className="text-blue-900 hover:text-blue-600 border-3 transition duration-300">
-            <a href="home">
+            <Link to="/">
               <FontAwesomeIcon className="mx-2" icon={faHouse} />
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="shop">
+            <Link to="/shop">
               <FontAwesomeIcon className="mx-2" icon={faShop} />
               Shop
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="about">
+            <Link to="/about">
               <FontAwesomeIcon className="mx-2" icon={faContactCard} />
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

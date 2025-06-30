@@ -50,9 +50,34 @@
 //   );
 // }
 
-import React from "react";
 
- function ProductPage() {
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+function ProductPage() {
+  const { id } = useParams();
+  const [productDetails, setProductDetails] = useState(null);
+
+  useEffect(() => {
+    if (!id) return;
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/products/${id}`);
+        if (!response.ok) throw new Error('Product not found');
+        const data = await response.json();
+        console.log('Fetched product details:', data);
+        setProductDetails(data.laptop);
+      } catch (error) {
+        setProductDetails(null);
+      }
+    };
+    fetchProductDetails();
+  }, [id]);
+
+  if (!productDetails) {
+    return <div className="text-center py-20 text-gray-500">Loading product details...</div>;
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 text-gray-900 font-sans">
      
@@ -60,21 +85,23 @@ import React from "react";
       {/* Product Info */}
       <div className="grid md:grid-cols-2 gap-10 items-center">
         <img
-          src="https://m.media-amazon.com/images/I/71vsGFjZ9rL._AC_UF894,1000_QL80_.jpg"
-          alt="HP EliteBook 840"
+          src={productDetails.image || "https://via.placeholder.com/300x200"}
+          alt={productDetails.name}
           className="w-full rounded-xl shadow-md"
         />
         <div>
-          <h2 className="text-4xl font-bold mb-4">HP EliteBook 840</h2>
+          <h2 className="text-4xl font-bold mb-4">{productDetails.name}</h2>
           <ul className="text-lg space-y-2">
-            <li><strong>Display:</strong> 15.6" Full HD</li>
-            <li><strong>Processor:</strong> Intel Core i5-8365U</li>
-            <li><strong>RAM:</strong> 16GB DDR4</li>
-            <li><strong>Storage:</strong> 256GB SSD</li>
+            <li><strong>Brand:</strong> {productDetails.brand}</li>
+            <li><strong>Model:</strong> {productDetails.model}</li>
+            <li><strong>Processor:</strong> {productDetails.processor}</li>
+            <li><strong>RAM:</strong> {productDetails.ram} GB</li>
+            <li><strong>Storage:</strong> {productDetails.storage}</li>
+            <li><strong>Price:</strong> ₹{productDetails.price}</li>
             <li><strong>Condition:</strong> Refurbished & Tested</li>
-            <li><strong>Warranty:</strong> 1 Year</li>
+            <li><strong>Warranty:</strong> {productDetails.warranty || '3 Months'}</li>
           </ul>
-          <p className="text-2xl font-bold text-blue-700 mt-4">$450</p>
+          <p className="text-2xl font-bold text-blue-700 mt-4">₹{productDetails.price}</p>
           <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
             Buy Now
           </button>
@@ -85,8 +112,7 @@ import React from "react";
       <div className="mt-12">
         <h3 className="text-2xl font-semibold mb-2">Product Description</h3>
         <p className="text-gray-700 leading-relaxed">
-          The HP EliteBook 840 is a powerful and durable laptop tailored for business professionals.
-          Equipped with a fast SSD, large RAM, and a vibrant display, it's perfect for multitasking, remote work, and productivity.
+          {productDetails.description || 'No description available.'}
         </p>
       </div>
 

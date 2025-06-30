@@ -1,11 +1,9 @@
-import React from "react";
-import "./App.css";
-import Navbar from "./components/Navbar";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import RefurbishedLaptopShop from "./components/RefurbishedLaptopShop";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer";
+import "./App.css";
 import FeaturedProduct from "./components/FeaturedProduct";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
 
 export default function App() {
@@ -16,9 +14,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
         </Routes>
+
         <Routes>
           <Route path="/" element={<FeaturedProduct />} />
-          <Route path="/productpage" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
 
         <Footer />

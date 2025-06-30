@@ -1,4 +1,5 @@
-import React from "react";
+
+import { useEffect, useState } from "react";
 
 function Hero() {
   return (
@@ -21,13 +22,41 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hero-image w-2/5 border-2 p-5  overflow-hidden rounded-lg">
-          <div className=" bg-gray-100 mb-4 flex items-center justify-center w-full obeject-cover rounded-lg">
-            <img className="w-full"  src="hs" alt="" />
+
+        <div className="hero-image w-1/2">
+          <div className="h-64 bg-gray-100 mb-4 flex items-center justify-center">
+            <span className="text-gray-400">Image Placeholder</span>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+// Simple image slider component
+function ImageSlider() {
+  const images = [
+    "https://i.redd.it/msl53vqmf4xb1.jpg",
+    "https://cdn.mos.cms.futurecdn.net/Gw3Se82bvppoJsHc4rCVsQ-1200-80.jpg.webp",
+    "https://via.placeholder.com/300x200?text=Laptop+3",
+    "https://via.placeholder.com/300x200?text=Laptop+4"
+  ];
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <img
+      src={images[current]}
+      alt={`Laptop ${current + 1}`}
+      className="object-fill h-64 w-full transition-all duration-1000"
+      style={{ maxWidth: '100%', maxHeight: '100%' }}
+    />
   );
 }
 
