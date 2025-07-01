@@ -6,10 +6,9 @@ const About = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 text-gray-800">
       {/* Title */}
-      <h1 className="text-3xl font-bold mb-4 text-center">About Us</h1>
 
       {/* Intro Section */}
-      <p className="text-lg text-center mb-8">
+      <p className="text-lg text-center mt-8 mb-8">
         Welcome to <strong>Refurbished Laptop Shop</strong>, your trusted destination for premium-quality, affordable refurbished laptops. We provide tested, certified, and warranty-backed laptops from top brands like HP, Dell, Lenovo, and Apple.
       </p>
 
