@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+const URL = import.meta.env.VITE_API_URL;
+
+console.log('Backend API URL:', URL); // Debugging line to check the URL
 
 
 function FeaturedProduct() {
@@ -32,7 +35,7 @@ function FeaturedProduct() {
 
   useEffect(() => {
     // Simulate fetching data from an API
-    fetch('http://localhost:5000/api/products')
+    fetch(`${URL}/products`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched laptops:', data);
