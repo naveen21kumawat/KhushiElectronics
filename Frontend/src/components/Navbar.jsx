@@ -39,7 +39,7 @@ function Navbar() {
           <li>
             <Link to="/review" className="border-2">
               <FontAwesomeIcon className="mx-2 border-2 " icon={faStar} />
-             Customer Review
+             Review
             </Link>
           </li>
         </ul>
