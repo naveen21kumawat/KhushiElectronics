@@ -89,6 +89,7 @@
 
 // export default FeaturedProduct
 
+
 import { useEffect, useState } from 'react';
 const URL = import.meta.env.VITE_API_URL;
 
@@ -155,12 +156,15 @@ function FeaturedProduct() {
         <h3 className="text-2xl font-semibold mb-6">Featured Laptops</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {laptops.map((laptop, idx) => (
-            <div key={laptop.name + idx} className="border p-4 rounded-lg shadow hover:shadow-md transition overflow-hidden bg-white">
-              <div className="w-full h-40 bg-gray-100 mb-4 flex items-center justify-center overflow-hidden">
+            <div
+              key={laptop.name + idx}
+              className="border p-4 rounded-lg shadow hover:shadow-xl transition duration-500 bg-white transform hover:scale-105 animate-fadeIn"
+            >
+              <div className="w-full h-40 bg-gray-100 mb-4 overflow-hidden rounded-md">
                 <img
                   src={laptop.image}
                   alt={laptop.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
               <h4 className="font-semibold text-sm sm:text-base mb-1">{laptop.name}</h4>
@@ -169,7 +173,7 @@ function FeaturedProduct() {
                 {laptop.specs || laptop.processor || "Specs not available"}
               </p>
               <button
-                className="mt-3 bg-blue-600 hover:bg-blue-700 text-white w-full py-2 text-sm rounded transition"
+                className="mt-3 bg-blue-600 hover:bg-blue-700 text-white w-full py-2 text-sm rounded transition duration-300"
                 onClick={() =>
                   window.location.href = `/product/${encodeURIComponent(laptop._id || idx)}`
                 }
@@ -185,3 +189,4 @@ function FeaturedProduct() {
 }
 
 export default FeaturedProduct;
+

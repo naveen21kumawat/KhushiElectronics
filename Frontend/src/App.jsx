@@ -9,6 +9,7 @@ import ReviewPage from "./components/ReviewPage";
 import About from "./components/About";
 import AddressPage from "./components/AddressPage";
 import Whychooseus from "./components/Whychooseus";
+import AnimatedLaptops from "./components/AnimateLaptop";
 export default function App() {
   return (
     <>
@@ -30,6 +31,9 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/location" element={<AddressPage />} />
           </Routes>
+        <Routes>
+          <Route path="/" element={<AnimatedLaptops/>} />
+        </Routes>
         </div>
 
         <Footer />
