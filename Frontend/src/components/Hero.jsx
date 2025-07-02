@@ -1,39 +1,38 @@
-
 import { useEffect, useState } from "react";
 
 function Hero() {
   return (
-    <>
-      <div className="hero w-full flex-wrap  flex border-2 p-10 shadow-t justify-around rounded-lgx px-4">
-        <div className="hero-content p-10 text-center border-2 item-center w-1/2  justify-center flex flex-col gap-4">
-          <h1 className="text-4xl font-bold mb-2">
-            Top Quality Refurbished Laptops
-          </h1>
-          <h2 className="text-2xl font-semibold text-gray-700 mb-6">
-            at Unbeatable Prices
-          </h2>
-          <div className="flex justify-center gap-4">
-            <button className="bg-blue-600 text-white px-6 py-2 rounded">
-              Shop Now
-            </button>
-            <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded">
-              View Deals
-            </button>
-          </div>
-        </div>
-
-
-        <div className="hero-image w-1/2">
-          <div className="h-64 bg-gray-100 mb-4 flex items-center justify-center">
-            <span className="text-gray-400">Image Placeholder</span>
-          </div>
+    <div className="hero w-full flex flex-col md:flex-row border-2 p-4 md:p-10 shadow-lg justify-between items-center rounded-lg gap-6 bg-white">
+      
+      {/* Hero Text Content */}
+      <div className="hero-content text-center md:text-left w-full md:w-1/2 flex flex-col justify-center gap-4">
+        <h1 className="text-3xl md:text-4xl font-bold">
+          Top Quality Refurbished Laptops
+        </h1>
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-700">
+          at Unbeatable Prices
+        </h2>
+        <div className="flex flex-wrap justify-center md:justify-start gap-4">
+          <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+            Shop Now
+          </button>
+          <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded hover:bg-blue-50 transition">
+            View Deals
+          </button>
         </div>
       </div>
-    </>
+
+      {/* Hero Image / Slider */}
+      <div className="hero-image w-full md:w-1/2">
+        <div className="h-64 md:h-72 bg-gray-100 flex items-center justify-center overflow-hidden rounded">
+          <ImageSlider />
+        </div>
+      </div>
+    </div>
   );
 }
 
-// Simple image slider component
+// Image Slider
 function ImageSlider() {
   const images = [
     "https://i.redd.it/msl53vqmf4xb1.jpg",
@@ -41,6 +40,7 @@ function ImageSlider() {
     "https://via.placeholder.com/300x200?text=Laptop+3",
     "https://via.placeholder.com/300x200?text=Laptop+4"
   ];
+
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -54,8 +54,7 @@ function ImageSlider() {
     <img
       src={images[current]}
       alt={`Laptop ${current + 1}`}
-      className="object-fill h-64 w-full transition-all duration-1000"
-      style={{ maxWidth: '100%', maxHeight: '100%' }}
+      className="object-cover w-full h-full transition-opacity duration-1000 rounded"
     />
   );
 }
