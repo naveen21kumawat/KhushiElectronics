@@ -114,7 +114,6 @@ module.exports.addProduct = async (req, res) => {
 }
 
 module.exports.editProduct = async (req, res) => {
-  try {
     const { id } = req.params;
     const updateData = { ...req.body };
     
@@ -145,14 +144,7 @@ module.exports.editProduct = async (req, res) => {
       message: 'Product updated successfully', 
       laptop: laptop 
     });
-  } catch (error) {
-    res.status(500).json({ 
-      success: false,
-      message: 'Error updating product', 
-      error: error.message 
-    });
-  }
-}
+  } 
 
 module.exports.deleteProduct = async (req, res) => {
   try {

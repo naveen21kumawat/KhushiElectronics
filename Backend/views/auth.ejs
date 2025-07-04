@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Admin Login/Register</title>
@@ -17,32 +18,34 @@
       pointer-events: none;
       z-index: 1;
     }
+
     .form-slide.active {
       opacity: 1;
       pointer-events: auto;
       z-index: 2;
       transform: translateX(0);
     }
+
     .form-slide.left {
       transform: translateX(-100%);
     }
+
     .form-slide.right {
       transform: translateX(100%);
     }
   </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
   <div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-8  overflow-hidden min-h-[460px]">
-    
-    <!-- Branding -->
-    <!-- <div class="flex flex-col items-center mb-6">
-      <i class="fas fa-laptop text-4xl text-gray-800 mb-2"></i>
-      <h1 class="text-xl font-bold text-gray-800">Khushi Laptops</h1>
-    </div> -->
 
     <!-- Login Form -->
     <div id="loginForm" class="form-slide active p-10">
-      <div class="text-2xl font-bold text-gray-800 mb-6 text-center">Admin Login</div>
+      <div class="text-2xl font-bold text-gray-800 mb-6 text-center">Welcome Back</div>
+      <div class="text-sm text-gray-600 mb-4 text-center">Please login to your admin account</div>
+      <div class="text-center mb-6">
+        <i class="fas fa-user-shield text-4xl text-gray-800"></i>
+      </div>
       <form action="/login" method="POST" class="space-y-4">
         <div>
           <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email address</label>
@@ -57,12 +60,17 @@
         <button type="submit"
           class="w-full py-2 px-4 bg-gray-800 text-white font-semibold rounded-lg shadow hover:bg-gray-900 transition">Login</button>
       </form>
-      <button class="w-full mt-4 text-gray-800 hover:underline text-sm" onclick="showRegister()">Don't have an account? Register</button>
+      <button class="w-full mt-4 text-gray-800 hover:underline text-sm" onclick="showRegister()">Don't have an account?
+        Register</button>
     </div>
 
     <!-- Register Form -->
     <div id="registerForm" class="form-slide right p-10">
-      <div class="text-2xl font-bold text-gray-800 mb-6 text-center">Admin Register</div>
+      <div class="text-2xl font-bold text-gray-800 mb-6 text-center">Welcome to Khushi Laptops</div>
+      <div class="text-sm text-gray-600 mb-4 text-center">Create your admin account</div>
+      <div class="text-center mb-6">
+        <i class="fas fa-user-plus text-4xl text-gray-800"></i>
+      </div>
       <form action="/register" method="POST" class="space-y-4">
         <div>
           <label for="registerEmail" class="block text-sm font-medium text-gray-700">Email address</label>
@@ -77,7 +85,8 @@
         <button type="submit"
           class="w-full py-2 px-4 bg-gray-800 text-white font-semibold rounded-lg shadow hover:bg-gray-900 transition">Register</button>
       </form>
-      <button class="w-full mt-4 text-gray-800 hover:underline text-sm" onclick="showLogin()">Already have an account? Login</button>
+      <button class="w-full mt-4 text-gray-800 hover:underline text-sm" onclick="showLogin()">Already have an account?
+        Login</button>
     </div>
   </div>
 
@@ -101,4 +110,5 @@
     }
   </script>
 </body>
+
 </html>

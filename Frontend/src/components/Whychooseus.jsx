@@ -2,7 +2,7 @@ import React from "react";
 
 function Whychooseus() {
   return (
-    <div className="bg-white min-h-screen font-sans px-4 py-10">
+    <div className="bg-white  font-sans px-4 py-10">
       
       {/* Why Choose Us Section */}
       <div className="text-center max-w-screen-md mx-auto">
