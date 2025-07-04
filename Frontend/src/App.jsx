@@ -14,8 +14,10 @@ export default function App() {
     <>
       <Router>
         <Navbar />
+
         <Routes>
-          <Route path="/" element={<Hero />} />
+
+          <Route className='' path="/" element={<Hero />} />
         </Routes>
         <Routes>
           <Route path="/" element={<FeaturedProduct />} />

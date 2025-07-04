@@ -12,12 +12,11 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <div className="nav w-full flex flex-wrap md:flex-nowrap items-center justify-between shadow-lg px-4 py-2 bg-white">
+      <div className="nav bg-blue-50 w-full flex flex-wrap md:flex-nowrap items-center justify-between  px-4 py-2  bg-white h-16 ">
         <div className="shop-name w-full md:w-1/4 italic text-center text-purple-800 text-base md:text-lg font-semibold mb-2 md:mb-0">
-          <marquee behavior="right" direction="">Welcome To Khushi Laptop</marquee>
           Khushi Laptop
         </div>
-        <ul className="w-full md:w-3/4 flex flex-wrap justify-center md:justify gap-4 text-sm md:text-base text-blue-900">
+        <ul className="w-full md:w-3/4 flex flex-wrap justify-evenly md:justify gap-1 text-sm md:text-base text-blue-900">
           <li className="hover:text-blue-600 transition duration-300">
             <Link to="/" className="flex items-center gap-1">
               <FontAwesomeIcon icon={faHouse} />
@@ -37,7 +36,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="hover:text-blue-600 transition duration-300">
-            <Link to="/review" className="flex items-center gap-1 border border-blue-400 px-2 py-1 rounded-md">
+            <Link to="/review" className="flex items-center gap-1  rounded-md">
               <FontAwesomeIcon icon={faStar} />
               Review
             </Link>
