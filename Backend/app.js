@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 const laptopRoute = require('./routes/laptop');
 const authRoute = require('./routes/auth');
+const reviewRoute = require('./routes/review');
 
 
 
@@ -24,6 +25,7 @@ app.use(express.static('public'));
 
 // API Routes
 app.use('/api', laptopRoute);
+app.use('/api/reviews', reviewRoute);
 app.use('/', authRoute);
 
 // Frontend API - Welcome message
