@@ -1,0 +1,45 @@
+<div id="sales" class="section hidden">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-2xl font-semibold mb-6">Sales Analytics</h3>
+        <!-- Sales Summary -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="text-blue-800 font-semibold">This Month</h4>
+                <p class="text-2xl font-bold text-blue-600" id="monthlySales">$0</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="text-green-800 font-semibold">This Week</h4>
+                <p class="text-2xl font-bold text-green-600" id="weeklySales">$0</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+                <h4 class="text-purple-800 font-semibold">Today</h4>
+                <p class="text-2xl font-bold text-purple-600" id="dailySales">$0</p>
+            </div>
+        </div>
+        <!-- Sales Chart -->
+        <div class="mb-8">
+            <canvas id="salesAnalyticsChart" width="400" height="200"></canvas>
+        </div>
+        <!-- Recent Sales Table -->
+        <div>
+            <h4 class="text-lg font-semibold mb-4">Recent Sales</h4>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesTableBody" class="bg-white divide-y divide-gray-200">
+                        <!-- Sales data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 

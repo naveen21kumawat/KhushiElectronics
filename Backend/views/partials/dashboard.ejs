@@ -1,0 +1,67 @@
+<div id="dashboard" class="section">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-box text-2xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-gray-500 text-sm">Total Products</h3>
+                    <p class="text-2xl font-bold text-gray-800" id="totalProducts">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                    <i class="fas fa-dollar-sign text-2xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-gray-500 text-sm">Total Sales</h3>
+                    <p class="text-2xl font-bold text-gray-800" id="totalSales">$0</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-gray-500 text-sm">Total Orders</h3>
+                    <p class="text-2xl font-bold text-gray-800" id="totalOrders">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                    <i class="fas fa-users text-2xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-gray-500 text-sm">Customers</h3>
+                    <p class="text-2xl font-bold text-gray-800" id="totalCustomers">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Charts Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold mb-4">Sales Overview</h3>
+            <canvas id="salesChart" width="400" height="200"></canvas>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold mb-4">Top Products</h3>
+            <canvas id="productsChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <!-- Recent Activity -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
+        <div class="space-y-4" id="recentActivity">
+            <!-- Activity items will be populated here -->
+        </div>
+    </div>
+</div> 

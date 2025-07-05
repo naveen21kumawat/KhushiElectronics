@@ -1,0 +1,48 @@
+<div id="products" class="section hidden">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-semibold">Product Management</h3>
+            <button onclick="showSection('add-product')"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                <i class="fas fa-plus mr-2"></i>Add New Product
+            </button>
+        </div>
+        <!-- Search and Filter -->
+        <div class="flex gap-4 mb-6">
+            <input type="text" id="productSearch" placeholder="Search products..."
+                class="flex-1 p-2 border border-gray-300 rounded">
+            <select id="brandFilter" class="p-2 border border-gray-300 rounded">
+                <option value="">All Brands</option>
+                <option value="HP">HP</option>
+                <option value="Dell">Dell</option>
+                <option value="Lenovo">Lenovo</option>
+                <option value="Apple">Apple</option>
+                <option value="Asus">Asus</option>
+                <option value="Acer">Acer</option>
+                <option value="Microsoft">Microsoft</option>
+            </select>
+            <button onclick="filterProducts()"
+                class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
+                <i class="fas fa-filter mr-2"></i>Filter
+            </button>
+        </div>
+        <!-- Products Table -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full table-auto">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Brand</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody" class="bg-white divide-y divide-gray-200">
+                    <!-- Products will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 
