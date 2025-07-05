@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const URL = import.meta.env.VITE_API_URL;
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -12,7 +13,7 @@ const ReviewPage = () => {
   // Fetch reviews from backend
   const fetchReviews = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/reviews/all');
+      const response = await fetch(`${URL}/reviews/all`);
       const data = await response.json();
       if (data.success) {
         setReviews(data.data);
@@ -34,10 +35,9 @@ const ReviewPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.rating || !form.comment) return alert("All fields required");
-
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/reviews/submit', {
+      const response = await fetch(`${URL}/reviews/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
