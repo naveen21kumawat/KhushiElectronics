@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function Hero() {
   return (
-    <div className="hero w-full flex flex-col md:flex-row border-2 p-4 md:p-10 shadow-lg justify-between items-center rounded-lg gap-6 bg-white">
+    <div className="hero w-full flex flex-col md:flex-row border-2 p-4 md:p-10 shadow-lg mt-3 justify-between items-center rounded-2xl gap-6 bg-white">
       
       {/* Hero Text Content */}
       <div className="hero-content text-center md:text-left w-full md:w-1/2 flex flex-col justify-center gap-4">
