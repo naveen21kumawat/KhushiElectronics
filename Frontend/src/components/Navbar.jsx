@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <div className="nav bg-blue-50  shadow-lg w-full flex flex-wrap md:flex-nowrap items-center justify-between mb-2 mt-1 m-1 rounded-2xl px-4 py-2  h-16 ">
+      <div className="nav bg-blue-50  shadow-lg w-full flex flex-wrap md:flex-nowrap sm:nowrap items-center justify-between mb-2 mt-1 m-1 rounded-2xl px-4 py-2   ">
         <div className="shop-name w-full md:w-1/4 italic text-center text-purple-800 text-base md:text-lg font-semibold mb-2 md:mb-0">
           Khushi Laptop
         </div>
