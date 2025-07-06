@@ -2,27 +2,25 @@ const Review = require('../models/review-model')
 
 module.exports.userReviews = async (req, res) => {
     try {
-        const { name, rating, comment } = req.body;
+        const { name,email, rating, comment } = req.body;
         
-        if (!name || !rating || !comment) {
+        if (!name || !email || !rating || !comment) {
             return res.status(400).json({
                 success: false,
                 message: 'All fields are required'
             });
         }
 
-        const newReview = new Review({
-            name,
-            rating: Number(rating),
-            comment
-        });
-
-        await newReview.save();
+        const updatedReview = await Review.findOneAndUpdate(
+          { email },
+          { name, email, rating: Number(rating), comment },
+          { new: true, upsert: true }
+        );
 
         res.status(201).json({
             success: true,
             message: 'Review submitted successfully',
-            data: newReview
+            data: updatedReview
         });
     } catch (error) {
         console.error('Error submitting review:', error);

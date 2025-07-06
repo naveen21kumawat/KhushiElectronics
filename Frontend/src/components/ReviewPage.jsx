@@ -6,6 +6,7 @@ const ReviewPage = () => {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
+    email: "",
     rating: "",
     comment: ""
   });
@@ -34,7 +35,7 @@ const ReviewPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.rating || !form.comment) return alert("All fields required");
+    if (!form.name || !form.email || !form.rating || !form.comment) return alert("All fields required");
     setLoading(true);
     try {
       const response = await fetch(`${URL}/reviews/submit`, {
@@ -44,6 +45,7 @@ const ReviewPage = () => {
         },
         body: JSON.stringify({
           name: form.name,
+          email: form.email,
           rating: Number(form.rating),
           comment: form.comment
         })
@@ -54,7 +56,7 @@ const ReviewPage = () => {
       if (data.success) {
         // Refresh reviews from backend
         await fetchReviews();
-        setForm({ name: "", rating: "", comment: "" });
+        setForm({ name: "",email:"", rating: "", comment: "" });
         alert('Review submitted successfully!');
       } else {
         alert(data.message || 'Error submitting review');
@@ -81,6 +83,7 @@ const ReviewPage = () => {
                 <div key={review._id} className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-medium text-sm md:text-base">{review.name}</span>
+                    <span className="text-gray-500 text-xs md:text-sm">{review.email}</span>
                     <span className="text-yellow-500 text-sm md:text-base">
                       {"★".repeat(review.rating)}{" "}
                       {"☆".repeat(5 - review.rating)}
@@ -109,6 +112,15 @@ const ReviewPage = () => {
                 value={form.name}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={form.email}
+                onChange={handleChange} 
+                className="w-full border border-gray-300 p-2 md:p-3 rounded text-sm md:text-base"
+                required
               />
 
               <select

@@ -5,6 +5,11 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true,
+        match: /.+\@.+\..+/
+    },
     rating: {
         type: Number,
         required: true,
