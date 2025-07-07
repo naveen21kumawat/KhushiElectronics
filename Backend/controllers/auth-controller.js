@@ -49,18 +49,18 @@ module.exports.loginUser=async (req, res) => {
     const admin = await Admin.findOne({ email });
     if (!admin) {
       if (req.headers.accept && req.headers.accept.includes('application/json')) {
-        return res.status(401).json({ message: 'Invalid credentials.' });
+        return res.status(401).json({ message: 'Email or password is incorrect.' });
       } else {
-        req.flash('error', 'Invalid credentials.');
+        req.flash('error', 'Email or password is incorrect.');
         return res.redirect('/');
       }
     }
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
       if (req.headers.accept && req.headers.accept.includes('application/json')) {
-        return res.status(401).json({ message: 'Invalid credentials.' });
+        return res.status(401).json({ message: 'Email or password is incorrect.' });
       } else {
-        req.flash('error', 'Invalid credentials.');
+        req.flash('error', 'Email or password is incorrect.');
         return res.redirect('/');
       }
     }
