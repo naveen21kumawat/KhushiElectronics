@@ -3,6 +3,8 @@ const cors = require('cors');
 const app = express();
 const dbconnect = require('./config/db');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
 app.use(cookieParser());
 const laptopRoute = require('./routes/laptop');
 const authRoute = require('./routes/auth');
@@ -22,6 +24,22 @@ app.set('view engine', 'ejs');
 
 // Static files
 app.use(express.static('public'));
+
+// --- Move session and flash middleware here, before routes ---
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+
+// Make flash messages available in all EJS templates
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
+// --- End move ---
 
 // API Routes
 app.use('/api', laptopRoute);
@@ -58,7 +76,6 @@ app.get('/laptopDetails', (req, res) => {
   },
   ]);
 });
-
 
 // Error handling middleware
 app.use((error, req, res, next) => {

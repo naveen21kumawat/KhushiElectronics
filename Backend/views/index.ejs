@@ -18,6 +18,12 @@
         <div class="flex-1 p-8">
             <!-- Header -->
             <%- include('partials/header') %>
+            <!-- Notifications -->
+            <%- include('partials/notification') %>
+            <!-- Custom JS Notification (for AJAX) -->
+            <div id="custom-notification" class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md flex flex-col items-center pointer-events-none" style="display:none;">
+                <div id="custom-notification-content" class="w-full text-center"></div>
+            </div>
             <!-- Dashboard Section -->
             <%- include('partials/dashboard') %>
             <!-- Products Section -->
@@ -49,8 +55,10 @@
             // Show selected section
             document.getElementById(sectionId).classList.remove('hidden');
 
-            // Add active class to clicked nav link
-            event.target.classList.add('active', 'bg-gray-700');
+            // Add active class to clicked nav link, if event is defined
+            if (typeof event !== 'undefined' && event && event.target) {
+                event.target.classList.add('active', 'bg-gray-700');
+            }
 
             // Load data for the section
             loadSectionData(sectionId);
@@ -200,16 +208,16 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Product added successfully!');
+                        showNotification('Product added successfully!', 'success');
                         this.reset();
                         showSection('products');
                     } else {
-                        alert('Error adding product: ' + data.message);
+                        showNotification('Error adding product: ' + data.message, 'error');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Error adding product');
+                    showNotification('Error adding product', 'error');
                 });
         });
 
@@ -224,8 +232,9 @@
 
         // Edit product
         function editProduct(productId) {
-            // Implement edit functionality
-
+            // Hide products section
+            document.getElementById('products').classList.add('hidden');
+            // Show edit form
             document.getElementById('editProductForm').classList.remove('hidden');
             // Load product details into the edit form
             fetch(`/api/products/${productId}`)
@@ -245,7 +254,7 @@
                 })
                 .catch(error => {
                     console.error('Error loading product details:', error);
-                    alert('Error loading product details');
+                    showNotification('Error loading product details', 'error');
                 });
 
             // Handle form submission for editing product
@@ -260,21 +269,22 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert('Product updated successfully!');
+                            showNotification('Product updated successfully!', 'success');
                             showSection('products');
                         } else {
-                            alert('Error updating product: ' + data.message);
+                            showNotification('Error updating product: ' + data.message, 'error');
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert('Error updating product');
+                        showNotification('Error updating product', 'error');
                     });
             });
         }
 
         function CancelEditProduct() {
             document.getElementById('editProductForm').classList.add('hidden');
+            document.getElementById('products').classList.remove('hidden');
         }
 
         // Delete product
@@ -449,6 +459,18 @@
         document.addEventListener('DOMContentLoaded', function () {
             loadDashboardData();
         });
+
+        // Custom JS Notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('custom-notification');
+            const content = document.getElementById('custom-notification-content');
+            content.innerHTML = `<div class='${type === 'success' ? 'bg-green-100 border border-green-400 text-green-700' : 'bg-red-100 border border-red-400 text-red-700'} px-4 py-3 rounded relative mb-4 transition-opacity duration-700 ease-in-out opacity-100 animate-fadeIn shadow-lg pointer-events-auto w-full text-center'>${message}</div>`;
+            notification.style.display = 'flex';
+            setTimeout(() => {
+                content.firstChild.classList.add('opacity-0');
+                setTimeout(() => notification.style.display = 'none', 700);
+            }, 3000);
+        }
     </script>
 </body>
 

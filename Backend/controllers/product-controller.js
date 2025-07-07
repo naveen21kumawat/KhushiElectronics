@@ -114,9 +114,10 @@ module.exports.addProduct = async (req, res) => {
 }
 
 module.exports.editProduct = async (req, res) => {
+  try {
     const { id } = req.params;
     const updateData = { ...req.body };
-    
+
     // Remove undefined values
     Object.keys(updateData).forEach(key => {
       if (updateData[key] === undefined) {
@@ -129,22 +130,31 @@ module.exports.editProduct = async (req, res) => {
     if (updateData.originalPrice) updateData.originalPrice = parseFloat(updateData.originalPrice);
     if (updateData.ram) updateData.ram = parseInt(updateData.ram);
     
+
     if (req.file) {
       updateData.image = req.file.path;
     }
 
     const laptop = await Laptop.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
-    
+
     if (!laptop) {
       return res.status(404).json({ success: false, message: 'Product not found' });
     }
 
-    res.json({ 
+    res.json({
       success: true,
-      message: 'Product updated successfully', 
-      laptop: laptop 
+      message: 'Product updated successfully',
+      laptop: laptop
     });
-  } 
+  } catch (error) {
+    console.error('Edit Product Error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error updating product',
+      error: error.message
+    });
+  }
+};
 
 module.exports.deleteProduct = async (req, res) => {
   try {

@@ -33,8 +33,12 @@ const laptopDetailsSchema = new mongoose.Schema({
     },
     processor: {
         type: String,
-        required: true,
-        enum: ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7']
+        enum: [
+            "Intel Core i3", "Intel Core i5", "Intel Core i7",
+            "AMD Ryzen 3", "AMD Ryzen 5", "AMD Ryzen 7",
+            "M4 Processor"
+        ],
+        required: true
     },
     ram: {
         type: Number,

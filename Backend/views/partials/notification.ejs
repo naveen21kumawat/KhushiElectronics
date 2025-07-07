@@ -1,0 +1,27 @@
+<div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md flex flex-col items-center pointer-events-none">
+  <% if (typeof success !== 'undefined' && success.length > 0) { %>
+    <div id="flash-success" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4 transition-opacity duration-700 ease-in-out opacity-100 animate-fadeIn shadow-lg pointer-events-auto w-full text-center" role="alert">
+      <span class="block sm:inline"><%= success %></span>
+    </div>
+  <% } %>
+  <% if (typeof error !== 'undefined' && error.length > 0) { %>
+    <div id="flash-error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 transition-opacity duration-700 ease-in-out opacity-100 animate-fadeIn shadow-lg pointer-events-auto w-full text-center" role="alert">
+      <span class="block sm:inline"><%= error %></span>
+    </div>
+  <% } %>
+</div>
+<script>
+  // Auto-hide flash messages after 3 seconds with fade-out
+  setTimeout(() => {
+    const success = document.getElementById('flash-success');
+    const error = document.getElementById('flash-error');
+    if (success) {
+      success.classList.add('opacity-0');
+      setTimeout(() => success.style.display = 'none', 700);
+    }
+    if (error) {
+      error.classList.add('opacity-0');
+      setTimeout(() => error.style.display = 'none', 700);
+    }
+  }, 3000);
+</script> 

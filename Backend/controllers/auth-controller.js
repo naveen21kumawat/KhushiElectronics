@@ -8,21 +8,37 @@ module.exports.registerUser= async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required.' });
+      if (req.headers.accept && req.headers.accept.includes('application/json')) {
+        return res.status(400).json({ message: 'Email and password are required.' });
+      } else {
+        req.flash('error', 'Email and password are required.');
+        return res.redirect('/');
+      }
     }
     const existing = await Admin.findOne({ email });
     if (existing) {
-      return res.status(409).json({ message: 'Admin already exists.' });
+      if (req.headers.accept && req.headers.accept.includes('application/json')) {
+        return res.status(409).json({ message: 'Admin already exists.' });
+      } else {
+        req.flash('error', 'Admin already exists.');
+        return res.redirect('/');
+      }
     }
     const admin = new Admin({ email, password });
     await admin.save();
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       res.status(201).json({ message: 'Admin registered successfully.' });
     } else {
+      req.flash('success', 'Admin registered successfully. Please login.');
       res.redirect('/');
     }
   } catch (err) {
-    res.status(500).json({ message: 'Registration failed.', error: err.message });
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      res.status(500).json({ message: 'Registration failed.', error: err.message });
+    } else {
+      req.flash('error', 'Registration failed.');
+      res.redirect('/');
+    }
   }
 }
 
@@ -32,11 +48,21 @@ module.exports.loginUser=async (req, res) => {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
     if (!admin) {
-      return res.status(401).json({ message: 'Invalid credentials.' });
+      if (req.headers.accept && req.headers.accept.includes('application/json')) {
+        return res.status(401).json({ message: 'Invalid credentials.' });
+      } else {
+        req.flash('error', 'Invalid credentials.');
+        return res.redirect('/');
+      }
     }
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials.' });
+      if (req.headers.accept && req.headers.accept.includes('application/json')) {
+        return res.status(401).json({ message: 'Invalid credentials.' });
+      } else {
+        req.flash('error', 'Invalid credentials.');
+        return res.redirect('/');
+      }
     }
     const token = jwt.sign({ id: admin._id, email: admin.email }, JWT_SECRET, { expiresIn: '1d' });
     // Set JWT as httpOnly cookie
@@ -44,9 +70,15 @@ module.exports.loginUser=async (req, res) => {
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       res.json({ message: 'Login successful.' });
     } else {
+      req.flash('success', 'Login successful!');
       res.redirect('/admin');
     }
   } catch (err) {
-    res.status(500).json({ message: 'Login failed.', error: err.message });
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      res.status(500).json({ message: 'Login failed.', error: err.message });
+    } else {
+      req.flash('error', 'Login failed.');
+      res.redirect('/');
+    }
   }
 }

@@ -19,6 +19,7 @@ router.post('/login',loginUser)
 // Logout admin
 router.get('/logout', (req, res) => {
   res.clearCookie('token');
+  req.flash('success', 'Logged out successfully.');
   res.redirect('/');
 });
 
