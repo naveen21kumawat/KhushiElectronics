@@ -32,10 +32,6 @@
             <%- include('partials/add-product') %>
             <!-- Edit Product Section -->
             <%- include('partials/edit-product') %>
-            <!-- Sales Section -->
-            <%- include('partials/sales') %>
-            <!-- Orders Section -->
-            <%- include('partials/orders') %>
         </div>
     </div>
 
@@ -231,7 +227,9 @@
         }
 
         // Edit product
+        let currentEditProductId = null; // Track the current product being edited
         function editProduct(productId) {
+            currentEditProductId = productId;
             // Hide products section
             document.getElementById('products').classList.add('hidden');
             // Show edit form
@@ -256,31 +254,35 @@
                     console.error('Error loading product details:', error);
                     showNotification('Error loading product details', 'error');
                 });
-
-            // Handle form submission for editing product
-            document.getElementById('editProductDetails').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                formData.append('id', productId); // Add product ID to form data
-                fetch(`api/products/${productId}`, {
-                    method: 'PUT',
-                    body: formData
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            showNotification('Product updated successfully!', 'success');
-                            showSection('products');
-                        } else {
-                            showNotification('Error updating product: ' + data.message, 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        showNotification('Error updating product', 'error');
-                    });
-            });
         }
+
+        // Attach the edit form submit handler ONCE
+        document.getElementById('editProductDetails').addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!currentEditProductId) return;
+            const formData = new FormData(this);
+            formData.append('id', currentEditProductId); // Add product ID to form data
+            fetch(`api/products/${currentEditProductId}`, {
+                method: 'PUT',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Product updated successfully!', 'success');
+                        // Hide edit form and show products section
+                        document.getElementById('editProductForm').classList.add('hidden');
+                        document.getElementById('products').classList.remove('hidden');
+                        showSection('products');
+                    } else {
+                        showNotification('Error updating product: ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error updating product', 'error');
+                });
+        });
 
         function CancelEditProduct() {
             document.getElementById('editProductForm').classList.add('hidden');
