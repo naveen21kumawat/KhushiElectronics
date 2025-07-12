@@ -7,3 +7,13 @@ module.exports={
     },
     plugins:[]
 }
+
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        rosca: ['Rosca', 'sans-serif'],
+      },
+    },
+  },
+};

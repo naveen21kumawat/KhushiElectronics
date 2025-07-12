@@ -73,7 +73,7 @@ const ReviewPage = () => {
     <div className="w-full p-4 md:p-6">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Reviews Section */}
-        <div className="w-full lg:w-1/2 order-2 lg:order-1">
+        <div className="w-full lg:w-1/2 order-2 lg:order-1 border border-gray-200 rounded-lg p-4 md:p-6 bg-gray-50 shadow-sm">
           <h3 className="text-xl font-semibold mb-4">Reviews</h3>
           {reviews.length === 0 ? (
             <p className="text-gray-500">No reviews yet.</p>
@@ -100,7 +100,7 @@ const ReviewPage = () => {
         </div>
 
         {/* Review Form Section */}
-        <div className="w-full lg:w-1/2 order-1 lg:order-2">
+        <div className="w-full lg:w-1/2 order-1 lg:order-2 flex">
           <div className="bg-white p-4 md:p-6 rounded-xl shadow-md">
             <h2 className="text-xl md:text-2xl font-bold mb-4">Leave a Review</h2>
 

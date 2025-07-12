@@ -9,9 +9,10 @@ const AddressPage = () => {
       <div className="bg-white p-6 rounded-lg shadow-md space-y-4 text-center">
         <div className="flex flex-col items-center">
           <FaMapMarkerAlt className="text-blue-600 text-4xl mb-2" />
-          <h2 className="text-xl font-semibold">Refurbished Laptop Shop</h2>
-          <p>1234 Tech Street, Mahaveer Nagar, Tonk Road</p>
-          <p>Jaipur, Rajasthan 302018, India</p>
+          <h2 className="text-xl font-semibold">G-44 45 Ganpati plaza
+</h2>
+          <p> A block nearby airtel store</p>
+          <p>M.I. Road ganpati plaza shop no G-44,45, Jaipur, Rajasthan 300201</p>
         </div>
 
         <div className="mt-6">
