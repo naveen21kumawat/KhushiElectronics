@@ -24,8 +24,14 @@ const laptopDetailsSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String,
-        required: true
+        type: [String],
+        required: true,
+        validate: {
+            validator: function(v) {
+                return v.length > 0;
+            },
+            message: 'At least one image is required'
+        }
     },
     model: {
         type: String,

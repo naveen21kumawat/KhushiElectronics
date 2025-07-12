@@ -1,5 +1,6 @@
 const express = require('express')
 const Laptop = require('../models/laptop-model');
+const { logProductAdded, logProductUpdated, logProductDeleted } = require('./activity-controller');
 
 module.exports.getProductStates = async (req, res) => {
     try {
@@ -68,12 +69,15 @@ module.exports.addProduct = async (req, res) => {
     }
 
     // Validate image upload
-    if (!req.file) {
+    if (!req.files || req.files.length === 0) {
       return res.status(400).json({
         success: false,
-        message: 'Product image is required'
+        message: 'At least one product image is required'
       });
     }
+
+    // Extract image paths from uploaded files
+    const imagePaths = req.files.map(file => file.path);
 
     const laptop = new Laptop({
       name,
@@ -86,7 +90,7 @@ module.exports.addProduct = async (req, res) => {
       storage,
       os,
       description,
-      image: req.file.path,
+      image: imagePaths,
       generation: 'Latest', // Default value
       ScreenSize: '15.6 inches', // Default value
       graphics: 'Integrated Graphics', // Default value
@@ -99,6 +103,10 @@ module.exports.addProduct = async (req, res) => {
     });
 
     await laptop.save();
+    
+    // Log the activity
+    await logProductAdded(laptop, 'Admin');
+    
     res.status(201).json({ 
       success: true,
       message: 'Product added successfully', 
@@ -141,6 +149,9 @@ module.exports.editProduct = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Product not found' });
     }
 
+    // Log the activity
+    await logProductUpdated(laptop, updateData, 'Admin');
+
     res.json({
       success: true,
       message: 'Product updated successfully',
@@ -159,11 +170,16 @@ module.exports.editProduct = async (req, res) => {
 module.exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const laptop = await Laptop.findByIdAndDelete(id);
+    const laptop = await Laptop.findById(id);
     
     if (!laptop) {
       return res.status(404).json({ success: false, message: 'Product not found' });
     }
+
+    // Log the activity before deletion
+    await logProductDeleted(laptop, 'Admin');
+    
+    await Laptop.findByIdAndDelete(id);
 
     res.json({ 
       success: true,

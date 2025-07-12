@@ -59,7 +59,12 @@
     </div>
     <!-- Recent Activity -->
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold">Recent Activity</h3>
+            <button onclick="showAllActivities()" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                View All <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+        </div>
         <div class="space-y-4" id="recentActivity">
             <!-- Activity items will be populated here -->
         </div>

@@ -1,0 +1,59 @@
+<div id="activities" class="section hidden">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-semibold">Activity Log</h3>
+            <div class="flex gap-2">
+                <button onclick="refreshActivities()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                    <i class="fas fa-refresh mr-2"></i>Refresh
+                </button>
+                <button onclick="showSection('dashboard')" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex gap-4 mb-6">
+            <select id="activityTypeFilter" class="p-2 border border-gray-300 rounded">
+                <option value="">All Activities</option>
+                <option value="product_added">Product Added</option>
+                <option value="product_updated">Product Updated</option>
+                <option value="product_deleted">Product Deleted</option>
+                <option value="order_placed">Order Placed</option>
+                <option value="order_updated">Order Updated</option>
+                <option value="user_registered">User Registered</option>
+                <option value="login">Login</option>
+                <option value="logout">Logout</option>
+            </select>
+            <select id="activityUserFilter" class="p-2 border border-gray-300 rounded">
+                <option value="">All Users</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+            <input type="date" id="activityDateFilter" class="p-2 border border-gray-300 rounded">
+            <button onclick="filterActivities()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
+                <i class="fas fa-filter mr-2"></i>Filter
+            </button>
+            <button onclick="clearActivityFilters()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
+                <i class="fas fa-times mr-2"></i>Clear
+            </button>
+        </div>
+
+        <!-- Results Summary -->
+        <div id="activityResultsSummary" class="mb-4 text-sm text-gray-600 hidden">
+            <span id="activityResultsCount">0</span> activities found
+        </div>
+
+        <!-- Activities List -->
+        <div class="space-y-4" id="allActivities">
+            <!-- Activities will be populated here -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-6" id="loadMoreContainer" style="display: none;">
+            <button onclick="loadMoreActivities()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+                <i class="fas fa-plus mr-2"></i>Load More
+            </button>
+        </div>
+    </div>
+</div> 
