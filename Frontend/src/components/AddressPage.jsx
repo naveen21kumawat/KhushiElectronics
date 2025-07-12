@@ -1,16 +1,17 @@
 import {
-    CheckCircle,
-    Clock,
-    ExternalLink,
-    Mail,
-    MapPin,
-    Navigation,
-    Phone,
-    Shield,
-    Star,
-    Truck
+  CheckCircle,
+  Clock,
+  ExternalLink,
+  Mail,
+  MapPin,
+  Navigation,
+  Phone,
+  Shield,
+  Star,
+  Truck
 } from 'lucide-react';
 import React, { useState } from 'react';
+import mapImage from '/images/map.png';
 
 const AddressPage = () => {
   const [activeTab, setActiveTab] = useState('location');
@@ -20,7 +21,7 @@ const AddressPage = () => {
     landmark: "Nearby Airtel Store",
     fullAddress: "M.I. Road Ganpati Plaza Shop No G-44,45, Jaipur, Rajasthan 302001",
     phone: "+91 98765 43210",
-    email: "info@khushielectronics.com",
+    email: "khushilaptos15@gmail.com",
     hours: "Monday - Saturday: 10:00 AM - 8:00 PM",
     coordinates: {
       lat: 26.9208776,
@@ -65,7 +66,7 @@ const AddressPage = () => {
             >
               Location & Map
             </button>
-            <button
+            {/* <button
               onClick={() => setActiveTab('contact')}
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
                 activeTab === 'contact'
@@ -74,7 +75,7 @@ const AddressPage = () => {
               }`}
             >
               Contact Info
-            </button>
+            </button> */}
             <button
               onClick={() => setActiveTab('hours')}
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
@@ -100,7 +101,7 @@ const AddressPage = () => {
               
               <div className="relative">
                 <img
-                  src="images/map.png"
+                  src={mapImage}
                   alt="Store Location Map"
                   className="w-full h-80 object-cover"
                 />
@@ -186,7 +187,7 @@ const AddressPage = () => {
         )}
 
         {/* Contact Tab */}
-        {activeTab === 'contact' && (
+        {/* {activeTab === 'contact' && (
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-6">Get in Touch</h2>
@@ -263,7 +264,7 @@ const AddressPage = () => {
               </form>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Hours Tab */}
         {activeTab === 'hours' && (

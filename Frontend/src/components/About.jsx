@@ -12,10 +12,10 @@ import {
     Shield,
     Star,
     Truck,
-    Twitter,
     Users
 } from 'lucide-react';
 import React, { useState } from 'react';
+import WhatsAppIcon from './WhatsAppIcon';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('about');
@@ -24,7 +24,7 @@ const About = () => {
     name: "Khushi Electronics",
     tagline: "Your Trusted Partner for Premium Refurbished Laptops",
     phone: "+91 98765 43210",
-    email: "info@khushielectronics.com",
+    email: "khushielectronics15@gmail.com",
     address: "G-44, 45 Ganpati Plaza, M.I. Road, Jaipur, Rajasthan 302001",
     hours: "Monday - Saturday: 10:00 AM - 8:00 PM"
   };
@@ -32,7 +32,7 @@ const About = () => {
   const stats = [
     { number: "500+", label: "Happy Customers", icon: Users },
     { number: "1000+", label: "Laptops Sold", icon: Award },
-    { number: "4.8", label: "Customer Rating", icon: Star },
+    { number: "4.0", label: "Customer Rating", icon: Star },
     { number: "24/7", label: "Support Available", icon: Shield }
   ];
 
@@ -62,13 +62,13 @@ const About = () => {
   const team = [
     {
       name: "Naveen Kumawat",
-      role: "Technical Lead",
+      role: "Designing And Development",
       image: "https://naveencodes.netlify.app/naveen.png",
-      bio: "Expert in laptop refurbishment and quality assurance"
+      bio: "Expert in desigining and development services"
     },
     {
       name: "Manish Prajapati",
-      role: "Customer Relations",
+      role: "Database And Product Management",
       image: "https://mypersonalpfolio.netlify.app/1707530238951.jpg",
       bio: "Dedicated to providing exceptional customer service"
     }
@@ -240,7 +240,7 @@ const About = () => {
 
                   <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-xl">
                     <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
-                      <Clock className="w-6 h-6 text-white" />
+                      <Clock className="w-6 h-6 text-black" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800">Business Hours</h3>
@@ -258,7 +258,7 @@ const About = () => {
                     <Facebook className="w-6 h-6 text-white" />
                   </a>
                   <a href="#" className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
-                    <Twitter className="w-6 h-6 text-white" />
+                    <WhatsAppIcon className="w-6 h-6 text-white" />
                   </a>
                   <a href="#" className="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
                     <Instagram className="w-6 h-6 text-white" />
@@ -332,7 +332,7 @@ const About = () => {
         {activeTab === 'team' && (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Meet Our Team</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">Development Team</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our dedicated team of experts is committed to providing you with the best 
                 refurbished laptops and exceptional customer service.
@@ -357,13 +357,13 @@ const About = () => {
             </div>
 
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
-              <h3 className="text-2xl font-bold mb-4">Join Our Team</h3>
+              <h3 className="text-2xl font-bold mb-4">Join Us</h3>
               <p className="mb-6">
                 We're always looking for passionate individuals who share our vision of 
                 making quality technology accessible to everyone.
               </p>
               <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-                View Open Positions
+                View Our Profile From Footer Section
               </button>
             </div>
           </div>

@@ -9,7 +9,7 @@ function Whychooseus() {
       color: "from-blue-500 to-blue-600"
     },
     {
-      title: "1-Year Warranty",
+      title: "3-Months Warranty",
       description: "Comprehensive warranty coverage",
       icon: "🛡️",
       color: "from-green-500 to-green-600"
@@ -69,9 +69,9 @@ function Whychooseus() {
       <div className="w-full max-w-4xl mx-auto mt-16">
         <div className="bg-white/80 backdrop-blur-sm border-2 border-blue-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
           <div className="text-center">
-            <div className="text-4xl mb-4">⭐</div>
+            <div className="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
             <blockquote className="text-xl sm:text-2xl text-gray-800 font-medium italic mb-6 leading-relaxed">
-              "Great quality laptop at a fraction of the price. The customer service was exceptional and the warranty gives me complete peace of mind. Highly recommend Khushi Electronics!"
+              "Great quality laptop at a fraction of the price. The customer service was exceptional and the warranty gives me complete peace of mind. Highly recommend Khushi Laptops!"
             </blockquote>
             <div className="flex items-center justify-center gap-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">

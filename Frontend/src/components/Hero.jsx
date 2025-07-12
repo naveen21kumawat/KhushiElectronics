@@ -56,7 +56,7 @@ function Hero() {
             <div className="flex flex-wrap justify-center lg:justify-start gap-3">
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <span className="text-sm font-medium text-gray-700">4.8/5 Rating</span>
+                <span className="text-sm font-medium text-gray-700">4.0/5 Rating</span>
               </div>
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
                 <Users className="w-4 h-4 text-blue-500" />
@@ -94,19 +94,23 @@ function Hero() {
                 onClick={() => scrollToSection('featured-products')}
                 className="group relative bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white px-8 py-4 rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-purple-700 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-3 font-semibold text-lg overflow-hidden shadow-lg"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <Eye className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                Explore Products
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-0"></div>
+                <div className="relative z-10 flex items-center justify-center gap-3">
+                  <Eye className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  Explore Products
+                  <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
               </button>
               
               <button
                 onClick={() => scrollToSection('why-choose-us')}
                 className="group relative border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-3 font-semibold text-lg overflow-hidden bg-white/80 backdrop-blur-sm shadow-lg"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-600/10 to-blue-600/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                Learn More
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-600/10 to-blue-600/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-0"></div>
+                <div className="relative z-10 flex items-center justify-center gap-3">
+                  <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  Learn More
+                </div>
               </button>
             </div>
 
@@ -118,7 +122,7 @@ function Hero() {
               </div>
               <div className="w-px h-12 bg-gray-300"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-800">50+</div>
+                <div className="text-2xl font-bold text-gray-800">15+</div>
                 <div className="text-sm text-gray-600">Brands Available</div>
               </div>
               <div className="w-px h-12 bg-gray-300"></div>
@@ -140,7 +144,7 @@ function Hero() {
                 <ImageSlider />
                 
                 {/* Floating Badges */}
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-500 text-black px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
                   <span className="text-xs sm:text-sm font-semibold flex items-center gap-1">
                     <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">Premium Quality</span>
@@ -148,7 +152,7 @@ function Hero() {
                   </span>
                 </div>
                 
-                <div className="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
+                <div className="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-black px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
                   <span className="text-xs sm:text-sm font-semibold flex items-center gap-1">
                     <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">Handpicked</span>
@@ -169,7 +173,7 @@ function Hero() {
               <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-100 px-6 py-4 backdrop-blur-sm">
                 <div className="flex items-center gap-6">
                   <div className="text-center">
-                    <div className="text-lg font-bold text-gray-800">4.8★</div>
+                    <div className="text-lg font-bold text-gray-800">4.0★</div>
                     <div className="text-xs text-gray-600">Rating</div>
                   </div>
                   <div className="w-px h-8 bg-gray-300"></div>
@@ -195,9 +199,9 @@ function Hero() {
 // Enhanced Image Slider
 function ImageSlider() {
   const images = [
-    "https://i.redd.it/msl53vqmf4xb1.jpg",
-    "https://cdn.mos.cms.futurecdn.net/Gw3Se82bvppoJsHc4rCVsQ-1200-80.jpg.webp",
-    "https://sm.mashable.com/mashable_in/photo/default/images-1_9uxj.jpg"
+    "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+    "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80",
+    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80"
   ];
 
   const [current, setCurrent] = useState(0);
@@ -218,7 +222,20 @@ function ImageSlider() {
         style={{
           filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
         }}
+        onError={(e) => {
+          e.target.style.display = 'none';
+          e.target.nextSibling.style.display = 'flex';
+        }}
       />
+      
+      {/* Fallback content if image fails to load */}
+      <div className="hidden absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center">
+        <div className="text-center text-white">
+          <div className="text-6xl mb-4">💻</div>
+          <h3 className="text-xl font-semibold mb-2">Premium Laptops</h3>
+          <p className="text-blue-100">Expertly Refurbished</p>
+        </div>
+      </div>
       
       {/* Enhanced gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-3xl"></div>
