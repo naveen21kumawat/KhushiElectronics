@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import "../index.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBars,
   faContactCard,
   faHouse,
+  faLaptop,
+  faMapLocationDot,
   faShop,
   faStar,
-  faMapLocationDot,
-  faBars,
   faTimes,
-  faLaptop,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../index.css";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +40,7 @@ function Navbar() {
         scrolled ? "py-2" : "py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-4">
         <div className="relative bg-blue-100 rounded-2xl shadow-lg">
           <div className="flex items-center justify-between px-6 py-4">
             {/* Logo Section */}

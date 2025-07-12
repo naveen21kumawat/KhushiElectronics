@@ -1,108 +1,190 @@
+import { ArrowRight, Award, CheckCircle, Clock, Eye, Play, Shield, Sparkles, Star, Truck, Users, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ShoppingCart, Eye, Star, Award, Users, Zap, Shield, Truck, Clock, CheckCircle } from "lucide-react";
 
 function Hero() {
+  // Scroll helpers for smooth navigation
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="hero w-full flex flex-col md:flex-row border-2 border-blue-100/50 p-6 md:p-12 shadow-2xl mt-3 justify-between items-center rounded-3xl gap-8 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 backdrop-blur-sm transition-all duration-700 hover:shadow-3xl hover:border-blue-200/70 relative overflow-hidden">
-      
-      {/* Animated background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute top-1/2 -right-8 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute -bottom-6 left-1/3 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-xl animate-pulse delay-500"></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 rounded-full blur-xl animate-pulse delay-1500"></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
       </div>
 
-      {/* Hero Text Content */}
-      <div className="hero-content text-center md:text-left w-full md:w-1/2 flex flex-col justify-center gap-6 animate-fade-in-up relative z-10">
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent leading-tight tracking-tight">
-            Top Quality Refurbished Laptops
-          </h1>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-gray-700 via-blue-700 to-purple-700 bg-clip-text text-transparent">
-            at Unbeatable Prices
-          </h2>
-          <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
-            Discover premium refurbished laptops with guaranteed quality, extended warranties, and unmatched performance for work, gaming, and creativity.
-          </p>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-gray-600 mb-4">
-          <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
-            <Star className="w-4 h-4 text-yellow-500 fill-current" />
-            <span className="font-medium">4.9/5 Rating</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
-            <Users className="w-4 h-4 text-blue-500" />
-            <span className="font-medium">10K+ Customers</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
-            <Award className="w-4 h-4 text-purple-500" />
-            <span className="font-medium">Certified Quality</span>
-          </div>
-        </div>
-
-        {/* Features */}
-        <div className="grid grid-cols-2 gap-3 text-sm mb-6">
-          <div className="flex items-center gap-2 text-gray-700">
-            <CheckCircle className="w-4 h-4 text-green-500" />
-            <span>1 Year Warranty</span>
-          </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <Shield className="w-4 h-4 text-blue-500" />
-            <span>Quality Tested</span>
-          </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <Truck className="w-4 h-4 text-purple-500" />
-            <span>Free Delivery</span>
-          </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <Clock className="w-4 h-4 text-orange-500" />
-            <span>24/7 Support</span>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap justify-center md:justify-start gap-4">
-          <button className="group relative bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white px-8 py-4 rounded-2xl hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center gap-3 font-semibold text-lg overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            <ShoppingCart className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-            Shop Now
-            <Zap className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
-          </button>
-          <button className="group relative border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center gap-3 font-semibold text-lg overflow-hidden bg-white/50 backdrop-blur-sm">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-600/10 to-blue-600/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            <Eye className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-            View Deals
-          </button>
-        </div>
-      </div>
-
-      {/* Hero Image / Slider */}
-      <div className="hero-image w-full md:w-1/2 animate-fade-in-right relative z-10">
-        <div className="h-80 md:h-96 lg:h-[28rem] bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center overflow-hidden rounded-3xl shadow-2xl border border-white/50 backdrop-blur-sm relative group">
-          {/* Decorative border glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-700 -z-10"></div>
+      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-16">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           
-          <ImageSlider />
-          
-          {/* Enhanced floating elements */}
-          <div className="absolute top-6 right-6 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
-            <span className="text-sm font-semibold flex items-center gap-2">
-              <CheckCircle className="w-4 h-4" />
-              Premium Quality
-            </span>
+          {/* Left Content */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left space-y-8">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-blue-200 px-4 py-2 rounded-full shadow-sm">
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-600">Premium Refurbished Laptops</span>
+            </div>
+
+            {/* Main Heading */}
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+                  Showcasing
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Premium Laptops
+                </span>
+              </h1>
+              
+              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Discover our carefully curated collection of high-quality refurbished laptops. 
+                Expertly tested, certified, and ready to inspire your next purchase decision.
+              </p>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
+                <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                <span className="text-sm font-medium text-gray-700">4.8/5 Rating</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
+                <Users className="w-4 h-4 text-blue-500" />
+                <span className="text-sm font-medium text-gray-700">500+ Reviews</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
+                <Award className="w-4 h-4 text-purple-500" />
+                <span className="text-sm font-medium text-gray-700">Certified Quality</span>
+              </div>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0">
+              <div className="flex items-center gap-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/50">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <span className="text-sm font-medium text-gray-700">Expertly Tested</span>
+              </div>
+              <div className="flex items-center gap-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/50">
+                <Shield className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                <span className="text-sm font-medium text-gray-700">Trusted Brands</span>
+              </div>
+              <div className="flex items-center gap-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/50">
+                <Truck className="w-5 h-5 text-purple-500 flex-shrink-0" />
+                <span className="text-sm font-medium text-gray-700">Latest Models</span>
+              </div>
+              <div className="flex items-center gap-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/50">
+                <Clock className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                <span className="text-sm font-medium text-gray-700">Updated Daily</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button
+                onClick={() => scrollToSection('featured-products')}
+                className="group relative bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white px-8 py-4 rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-purple-700 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-3 font-semibold text-lg overflow-hidden shadow-lg"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <Eye className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                Explore Products
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+              
+              <button
+                onClick={() => scrollToSection('why-choose-us')}
+                className="group relative border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-3 font-semibold text-lg overflow-hidden bg-white/80 backdrop-blur-sm shadow-lg"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-600/10 to-blue-600/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                Learn More
+              </button>
+            </div>
+
+            {/* Social Proof */}
+            <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-800">1000+</div>
+                <div className="text-sm text-gray-600">Laptops Showcased</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-800">50+</div>
+                <div className="text-sm text-gray-600">Brands Available</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-800">24/7</div>
+                <div className="text-sm text-gray-600">Expert Support</div>
+              </div>
+            </div>
           </div>
-          <div className="absolute bottom-6 left-6 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
-            <span className="text-sm font-semibold flex items-center gap-2">
-              <Zap className="w-4 h-4" />
-              Best Deals
-            </span>
-          </div>
-          <div className="absolute top-6 left-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
-            <span className="text-sm font-semibold flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              Warranty
-            </span>
+
+          {/* Right Content - Image Slider */}
+          <div className="w-full lg:w-1/2 relative">
+            <div className="relative group">
+              {/* Main Image Container */}
+              <div className="relative h-80 sm:h-96 lg:h-[500px] bg-gradient-to-br from-gray-50 via-white to-gray-100 rounded-3xl shadow-2xl border border-white/50 backdrop-blur-sm overflow-hidden">
+                {/* Decorative border glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-700 -z-10"></div>
+                
+                <ImageSlider />
+                
+                {/* Floating Badges */}
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
+                  <span className="text-xs sm:text-sm font-semibold flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Premium Quality</span>
+                    <span className="sm:hidden">Quality</span>
+                  </span>
+                </div>
+                
+                <div className="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
+                  <span className="text-xs sm:text-sm font-semibold flex items-center gap-1">
+                    <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Handpicked</span>
+                    <span className="sm:hidden">Best</span>
+                  </span>
+                </div>
+                
+                <div className="absolute top-4 left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20 transform hover:scale-105 transition-transform">
+                  <span className="text-xs sm:text-sm font-semibold flex items-center gap-1">
+                    <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Trusted</span>
+                    <span className="sm:hidden">Safe</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom Stats */}
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-100 px-6 py-4 backdrop-blur-sm">
+                <div className="flex items-center gap-6">
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-gray-800">4.8★</div>
+                    <div className="text-xs text-gray-600">Rating</div>
+                  </div>
+                  <div className="w-px h-8 bg-gray-300"></div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-gray-800">500+</div>
+                    <div className="text-xs text-gray-600">Reviews</div>
+                  </div>
+                  <div className="w-px h-8 bg-gray-300"></div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold text-gray-800">100%</div>
+                    <div className="text-xs text-gray-600">Tested</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +192,7 @@ function Hero() {
   );
 }
 
-// Image Slider (keeping your exact logic)
+// Enhanced Image Slider
 function ImageSlider() {
   const images = [
     "https://i.redd.it/msl53vqmf4xb1.jpg",
@@ -123,7 +205,7 @@ function ImageSlider() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 2500);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -131,33 +213,34 @@ function ImageSlider() {
     <div className="relative w-full h-full group">
       <img
         src={images[current]}
-        alt={`Laptop ${current + 1}`}
-        className="object-cover w-full h-full transition-all duration-1000 ease-in-out rounded-2xl transform group-hover:scale-110"
+        alt={`Premium Laptop ${current + 1}`}
+        className="object-cover w-full h-full transition-all duration-1000 ease-in-out rounded-3xl transform group-hover:scale-105"
         style={{
-          filter: 'brightness(1.1) contrast(1.1) saturate(1.2)',
+          filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
         }}
       />
       
-      {/* Premium gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-2xl"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 rounded-2xl"></div>
+      {/* Enhanced gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-3xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 rounded-3xl"></div>
       
-      {/* Elegant slide indicators */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3">
+      {/* Slide indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
         {images.map((_, index) => (
-          <div
+          <button
             key={index}
+            onClick={() => setCurrent(index)}
             className={`transition-all duration-500 rounded-full ${
               index === current 
-                ? 'bg-white w-8 h-3 shadow-lg shadow-white/50' 
-                : 'bg-white/60 w-3 h-3 hover:bg-white/80 hover:scale-110'
+                ? 'bg-white w-6 h-2 shadow-lg shadow-white/50' 
+                : 'bg-white/60 w-2 h-2 hover:bg-white/80 hover:scale-110'
             }`}
           />
         ))}
       </div>
-
-      {/* Progress indicator */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-white/20 rounded-t-2xl overflow-hidden">
+      
+      {/* Progress bar */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-white/20 rounded-t-3xl overflow-hidden">
         <div 
           className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-100 ease-linear"
           style={{
@@ -165,6 +248,20 @@ function ImageSlider() {
           }}
         />
       </div>
+
+      {/* Navigation arrows */}
+      <button
+        onClick={() => setCurrent((prev) => (prev - 1 + images.length) % images.length)}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+      >
+        <ArrowRight className="w-5 h-5 rotate-180" />
+      </button>
+      <button
+        onClick={() => setCurrent((prev) => (prev + 1) % images.length)}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-700 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+      >
+        <ArrowRight className="w-5 h-5" />
+      </button>
     </div>
   );
 }
