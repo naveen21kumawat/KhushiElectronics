@@ -1,49 +1,140 @@
-import React from "react";
-import "../App.css";
+import React, { useState, useEffect } from "react";
+import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faContactCard,
   faHouse,
   faShop,
   faStar,
+  faMapLocationDot,
+  faBars,
+  faTimes,
+  faLaptop,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
+    { name: "Home", icon: faHouse, to: "/" },
+    { name: "Shop", icon: faShop, to: "/shop" },
+    { name: "Location", icon: faMapLocationDot, to: "/location" },
+    { name: "Contact", icon: faContactCard, to: "/about" },
+    { name: "Review", icon: faStar, to: "/review" },
+  ];
+
   return (
-    <>
-      <div className="nav bg-blue-50  shadow-lg w-full flex flex-wrap md:flex-nowrap items-center justify-between mb-2 mt-1 m-1 rounded-2xl px-4 py-2 sticky top-0 left-0 z-50">
-        <div className="shop-name w-full md:w-1/4 italic text-center text-purple-800 text-base md:text-lg font-serif font-bold mb-2 md:mb-0">
-          Khushi Laptop
+    <nav
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "py-2" : "py-4"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative bg-blue-100 rounded-2xl shadow-lg">
+          <div className="flex items-center justify-between px-6 py-4">
+            {/* Logo Section */}
+            <div className="flex-shrink-0 flex items-center gap-3 group">
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                  <FontAwesomeIcon
+                    icon={faLaptop}
+                    className="text-white text-xl group-hover:rotate-12 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent font-serif italic">
+                  Khushi Laptop
+                </h1>
+                <span className="text-xs text-gray-600 font-medium">
+                  Premium Refurbished
+                </span>
+              </div>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map((item, index) => (
+                <Link
+                  key={item.name}
+                  to={item.to}
+                  className="group relative px-4 py-2 rounded-xl transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex items-center space-x-2 text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className="text-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+                    />
+                    <span className="font-medium">{item.name}</span>
+                  </div>
+
+                  {/* Underline on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Toggle */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <FontAwesomeIcon
+                  icon={isOpen ? faTimes : faBars}
+                  className="text-gray-700 text-xl"
+                />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Nav */}
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-300 ${
+              isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="px-6 py-4 border-t border-gray-200">
+              <div className="space-y-2">
+                {navItems.map((item, index) => (
+                  <Link
+                    key={item.name}
+                    to={item.to}
+                    className="group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300"
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                      transform: isOpen ? "translateY(0)" : "translateY(-10px)",
+                      transition: `all 0.3s ease ${index * 0.1}s`,
+                    }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className="text-gray-600 group-hover:text-blue-600 transition-colors duration-300 text-lg"
+                    />
+                    <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
+                      {item.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        <ul className="w-full md:w-3/4 flex flex-wrap justify-evenly md:justify gap-1 text-sm md:text-base rounded-2xl border-2 p-3 text-blue-900">
-          <li className="hover:text-blue-600 transition duration-300">
-            <Link to="/" className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faHouse} />
-              Home
-            </Link>
-          </li>
-          <li className="hover:text-blue-600 transition duration-300">
-            <Link to="/shop" className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faShop} />
-              Shop
-            </Link>
-          </li>
-          <li className="hover:text-blue-600 transition duration-300">
-            <Link to="/about" className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faContactCard} />
-              Contact
-            </Link>
-          </li>
-          <li className="hover:text-blue-600 transition duration-300">
-            <Link to="/review" className="flex items-center gap-1  rounded-md">
-              <FontAwesomeIcon icon={faStar} />
-              Review
-            </Link>
-          </li>
-        </ul>
       </div>
-    </>
+    </nav>
   );
 }
 
