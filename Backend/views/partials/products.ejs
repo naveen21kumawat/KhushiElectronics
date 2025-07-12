@@ -21,11 +21,31 @@
                 <option value="Acer">Acer</option>
                 <option value="Microsoft">Microsoft</option>
             </select>
+            <select id="priceFilter" class="p-2 border border-gray-300 rounded">
+                <option value="">All Prices</option>
+                <option value="0-300">Under $300</option>
+                <option value="300-500">$300 - $500</option>
+                <option value="500-800">$500 - $800</option>
+                <option value="800-1200">$800 - $1200</option>
+                <option value="1200+">Over $1200</option>
+            </select>
             <button onclick="filterProducts()"
                 class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
                 <i class="fas fa-filter mr-2"></i>Filter
             </button>
+            <button onclick="clearFilters()"
+                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors">
+                <i class="fas fa-times mr-2"></i>Clear
+            </button>
         </div>
+        <!-- Results Summary -->
+        <div id="resultsSummary" class="mb-4 text-sm text-gray-600 hidden">
+            <span id="resultsCount">0</span> products found
+            <button onclick="clearFilters()" class="ml-2 text-blue-600 hover:text-blue-800 underline">
+                <i class="fas fa-times mr-1"></i>Clear filters
+            </button>
+        </div>
+        
         <!-- Products Table -->
         <div class="overflow-x-auto">
             <table class="min-w-full table-auto">

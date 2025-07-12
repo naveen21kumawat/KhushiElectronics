@@ -32,7 +32,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Configure multer with file size limits and error handling
+// Configure multer for single file upload (for backward compatibility)
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
@@ -42,19 +42,29 @@ const upload = multer({
   }
 });
 
+// Configure multer for multiple file upload
+const uploadMultiple = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit per file
+    files: 10 // Allow up to 10 files per request
+  }
+});
+
 // Error handling middleware for multer
 const handleUploadError = (error, req, res, next) => {
   if (error instanceof multer.MulterError) {
     if (error.code === 'LIMIT_FILE_SIZE') {
       return res.status(400).json({
         success: false,
-        message: 'File too large. Maximum size is 5MB.'
+        message: 'File too large. Maximum size is 5MB per file.'
       });
     }
     if (error.code === 'LIMIT_FILE_COUNT') {
       return res.status(400).json({
         success: false,
-        message: 'Too many files. Only 1 file allowed.'
+        message: 'Too many files. Maximum 10 files allowed.'
       });
     }
   }
@@ -69,4 +79,4 @@ const handleUploadError = (error, req, res, next) => {
   next(error);
 };
 
-module.exports = { upload, handleUploadError };
+module.exports = { upload, uploadMultiple, handleUploadError };

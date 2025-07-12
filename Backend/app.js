@@ -5,6 +5,7 @@ const dbconnect = require('./config/db');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const { seedInitialActivities } = require('./controllers/activity-controller');
 app.use(cookieParser());
 const laptopRoute = require('./routes/laptop');
 const authRoute = require('./routes/auth');
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Connect to the database
 dbconnect();
+// Seed initial activities
+seedInitialActivities();
 app.set('view engine', 'ejs');
 // Static files
 app.use(express.static('public'));

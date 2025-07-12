@@ -32,10 +32,8 @@
             <%- include('partials/add-product') %>
             <!-- Edit Product Section -->
             <%- include('partials/edit-product') %>
-            <!-- Sales Section -->
-            <%- include('partials/sales') %>
-            <!-- Orders Section -->
-            <%- include('partials/orders') %>
+            <!-- Activities Section -->
+            <%- include('partials/activities') %>
         </div>
     </div>
 
@@ -73,12 +71,12 @@
                 case 'products':
                     loadProducts();
                     break;
-                case 'sales':
-                    loadSalesData();
-                    break;
-                case 'orders':
-                    loadOrders();
-                    break;
+                // case 'sales':
+                //     loadSalesData();
+                //     break;
+                // case 'orders':
+                //     loadOrders();
+                //     break;
             }
         }
 
@@ -95,8 +93,120 @@
                 })
                 .catch(error => console.error('Error loading stats:', error));
 
+            // Load recent activities
+            loadRecentActivities();
+
             // Initialize charts
             initializeCharts();
+        }
+
+        // Load recent activities
+        function loadRecentActivities() {
+            fetch('/api/activities?limit=8')
+                .then(response => response.json())
+                .then(activities => {
+                    const activityContainer = document.getElementById('recentActivity');
+                    activityContainer.innerHTML = '';
+
+                    if (activities.length === 0) {
+                        activityContainer.innerHTML = `
+                            <div class="text-center text-gray-500 py-4">
+                                <i class="fas fa-info-circle text-2xl mb-2"></i>
+                                <p>No recent activities</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    activities.forEach(activity => {
+                        const activityItem = createActivityItem(activity);
+                        activityContainer.innerHTML += activityItem;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading recent activities:', error);
+                    const activityContainer = document.getElementById('recentActivity');
+                    activityContainer.innerHTML = `
+                        <div class="text-center text-red-500 py-4">
+                            <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
+                            <p>Error loading activities</p>
+                        </div>
+                    `;
+                });
+        }
+
+        // Create activity item HTML
+        function createActivityItem(activity) {
+            const icon = getActivityIcon(activity.type);
+            const color = getActivityColor(activity.type);
+            const timeAgo = getTimeAgo(activity.timestamp);
+            
+            return `
+                <div class="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 rounded-full ${color.bg} flex items-center justify-center">
+                            <i class="${icon} ${color.text} text-sm"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900">${activity.description}</p>
+                        <p class="text-xs text-gray-500">by ${activity.user} • ${timeAgo}</p>
+                        ${activity.details && activity.details.amount ? `
+                            <p class="text-xs text-green-600 font-medium">$${activity.details.amount}</p>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get activity icon based on type
+        function getActivityIcon(type) {
+            const icons = {
+                'product_added': 'fas fa-plus',
+                'product_updated': 'fas fa-edit',
+                'product_deleted': 'fas fa-trash',
+                'order_placed': 'fas fa-shopping-cart',
+                'order_updated': 'fas fa-sync',
+                'user_registered': 'fas fa-user-plus',
+                'login': 'fas fa-sign-in-alt',
+                'logout': 'fas fa-sign-out-alt'
+            };
+            return icons[type] || 'fas fa-info-circle';
+        }
+
+        // Get activity color based on type
+        function getActivityColor(type) {
+            const colors = {
+                'product_added': { bg: 'bg-green-100', text: 'text-green-600', border: 'border-green-500', badge: 'bg-green-100 text-green-800' },
+                'product_updated': { bg: 'bg-blue-100', text: 'text-blue-600', border: 'border-blue-500', badge: 'bg-blue-100 text-blue-800' },
+                'product_deleted': { bg: 'bg-red-100', text: 'text-red-600', border: 'border-red-500', badge: 'bg-red-100 text-red-800' },
+                'order_placed': { bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-500', badge: 'bg-purple-100 text-purple-800' },
+                'order_updated': { bg: 'bg-yellow-100', text: 'text-yellow-600', border: 'border-yellow-500', badge: 'bg-yellow-100 text-yellow-800' },
+                'user_registered': { bg: 'bg-indigo-100', text: 'text-indigo-600', border: 'border-indigo-500', badge: 'bg-indigo-100 text-indigo-800' },
+                'login': { bg: 'bg-green-100', text: 'text-green-600', border: 'border-green-500', badge: 'bg-green-100 text-green-800' },
+                'logout': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-500', badge: 'bg-gray-100 text-gray-800' }
+            };
+            return colors[type] || { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-300', badge: 'bg-gray-100 text-gray-800' };
+        }
+
+        // Get time ago string
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const activityTime = new Date(timestamp);
+            const diffInSeconds = Math.floor((now - activityTime) / 1000);
+
+            if (diffInSeconds < 60) {
+                return 'Just now';
+            } else if (diffInSeconds < 3600) {
+                const minutes = Math.floor(diffInSeconds / 60);
+                return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            } else if (diffInSeconds < 86400) {
+                const hours = Math.floor(diffInSeconds / 3600);
+                return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            } else {
+                const days = Math.floor(diffInSeconds / 86400);
+                return `${days} day${days > 1 ? 's' : ''} ago`;
+            }
         }
 
         // Initialize charts
@@ -156,22 +266,36 @@
                     tbody.innerHTML = '';
 
                     products.forEach(product => {
+                        // Handle both single image (string) and multiple images (array)
+                        const mainImage = Array.isArray(product.image) ? product.image[0] : product.image;
+                        const imageCount = Array.isArray(product.image) ? product.image.length : 1;
+                        
                         const row = `
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <img class="h-10 w-10 rounded-full object-cover" src="${product.image || '/placeholder.png'}" alt="${product.name}">
+                                        <div class="relative">
+                                            <img class="h-10 w-10 rounded-full object-cover" src="${mainImage || '/placeholder.png'}" alt="${product.name}">
+                                            ${imageCount > 1 ? `
+                                                <div class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs px-1 py-0.5 rounded-full">
+                                                    +${imageCount - 1}
+                                                </div>
+                                            ` : ''}
+                                        </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">${product.name}</div>
                                             <div class="text-sm text-gray-500">${product.model}</div>
+                                            ${imageCount > 1 ? `
+                                                <div class="text-xs text-blue-600">${imageCount} images</div>
+                                            ` : ''}
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product.brand}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$${product.price}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        In Stock
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${product.availability ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                        ${product.availability ? 'In Stock' : 'Out of Stock'}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -195,6 +319,44 @@
                 .catch(error => console.error('Error loading products:', error));
         }
 
+        // Clear filters and reload all products
+        function clearFilters() {
+            document.getElementById('productSearch').value = '';
+            document.getElementById('brandFilter').value = '';
+            document.getElementById('priceFilter').value = '';
+            document.getElementById('resultsSummary').classList.add('hidden');
+            loadProducts();
+        }
+
+        // Add event listeners for real-time filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('productSearch');
+            const brandFilter = document.getElementById('brandFilter');
+            const priceFilter = document.getElementById('priceFilter');
+
+            if (searchInput) {
+                let searchTimeout;
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        filterProducts();
+                    }, 300); // Debounce search for 300ms
+                });
+            }
+
+            if (brandFilter) {
+                brandFilter.addEventListener('change', function() {
+                    filterProducts();
+                });
+            }
+
+            if (priceFilter) {
+                priceFilter.addEventListener('change', function() {
+                    filterProducts();
+                });
+            }
+        });
+
         // Add product form submission
         document.getElementById('addProductForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -209,7 +371,7 @@
                 .then(data => {
                     if (data.success) {
                         showNotification('Product added successfully!', 'success');
-                        this.reset();
+                        resetAddProductForm();
                         showSection('products');
                     } else {
                         showNotification('Error adding product: ' + data.message, 'error');
@@ -225,13 +387,126 @@
         function filterProducts() {
             const searchTerm = document.getElementById('productSearch').value;
             const brandFilter = document.getElementById('brandFilter').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+            const resultsSummary = document.getElementById('resultsSummary');
+            const resultsCount = document.getElementById('resultsCount');
 
-            // Implement filtering logic here
-            console.log('Filtering products:', { searchTerm, brandFilter });
+            // Show loading state
+            const tbody = document.getElementById('productsTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>Loading products...
+                    </td>
+                </tr>
+            `;
+
+            // Hide results summary during loading
+            resultsSummary.classList.add('hidden');
+
+            // Build query parameters
+            const params = new URLSearchParams();
+            if (searchTerm) params.append('search', searchTerm);
+            if (brandFilter) params.append('brand', brandFilter);
+            if (priceFilter) {
+                const [minPrice, maxPrice] = priceFilter.split('-');
+                if (minPrice) params.append('minPrice', minPrice);
+                if (maxPrice && maxPrice !== '+') params.append('maxPrice', maxPrice);
+            }
+
+            // Fetch filtered products
+            fetch(`/api/products/search?${params.toString()}`)
+                .then(response => response.json())
+                .then(products => {
+                    tbody.innerHTML = '';
+
+                    // Show results summary if filters are active
+                    if (searchTerm || brandFilter || priceFilter) {
+                        resultsCount.textContent = products.length;
+                        resultsSummary.classList.remove('hidden');
+                    } else {
+                        resultsSummary.classList.add('hidden');
+                    }
+
+                    if (products.length === 0) {
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                    <i class="fas fa-search mr-2"></i>No products found matching your criteria
+                                </td>
+                            </tr>
+                        `;
+                        return;
+                    }
+
+                    products.forEach(product => {
+                        // Handle both single image (string) and multiple images (array)
+                        const mainImage = Array.isArray(product.image) ? product.image[0] : product.image;
+                        const imageCount = Array.isArray(product.image) ? product.image.length : 1;
+                        
+                        const row = `
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="relative">
+                                            <img class="h-10 w-10 rounded-full object-cover" src="${mainImage || '/placeholder.png'}" alt="${product.name}">
+                                            ${imageCount > 1 ? `
+                                                <div class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs px-1 py-0.5 rounded-full">
+                                                    +${imageCount - 1}
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">${product.name}</div>
+                                            <div class="text-sm text-gray-500">${product.model}</div>
+                                            ${imageCount > 1 ? `
+                                                <div class="text-xs text-blue-600">${imageCount} images</div>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product.brand}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$${product.price}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${product.availability ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                        ${product.availability ? 'In Stock' : 'Out of Stock'}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button onclick="editProduct('${product._id}')" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="deleteProduct('${product._id}')" class="text-red-600 hover:text-red-900">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error filtering products:', error);
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-red-500">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>Error loading products
+                            </td>
+                        </tr>
+                    `;
+                    showNotification('Error filtering products', 'error');
+                });
         }
 
         // Edit product
+        let currentEditProductId = null; // Track the current product being edited
         function editProduct(productId) {
+            currentEditProductId = productId;
             // Hide products section
             document.getElementById('products').classList.add('hidden');
             // Show edit form
@@ -256,31 +531,35 @@
                     console.error('Error loading product details:', error);
                     showNotification('Error loading product details', 'error');
                 });
-
-            // Handle form submission for editing product
-            document.getElementById('editProductDetails').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                formData.append('id', productId); // Add product ID to form data
-                fetch(`api/products/${productId}`, {
-                    method: 'PUT',
-                    body: formData
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            showNotification('Product updated successfully!', 'success');
-                            showSection('products');
-                        } else {
-                            showNotification('Error updating product: ' + data.message, 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        showNotification('Error updating product', 'error');
-                    });
-            });
         }
+
+        // Attach the edit form submit handler ONCE
+        document.getElementById('editProductDetails').addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!currentEditProductId) return;
+            const formData = new FormData(this);
+            formData.append('id', currentEditProductId); // Add product ID to form data
+            fetch(`api/products/${currentEditProductId}`, {
+                method: 'PUT',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Product updated successfully!', 'success');
+                        // Hide edit form and show products section
+                        document.getElementById('editProductForm').classList.add('hidden');
+                        document.getElementById('products').classList.remove('hidden');
+                        showSection('products');
+                    } else {
+                        showNotification('Error updating product: ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error updating product', 'error');
+                });
+        });
 
         function CancelEditProduct() {
             document.getElementById('editProductForm').classList.add('hidden');
@@ -470,6 +749,261 @@
                 content.firstChild.classList.add('opacity-0');
                 setTimeout(() => notification.style.display = 'none', 700);
             }, 3000);
+        }
+
+        // Show all activities page
+        function showAllActivities() {
+            hideAllSections();
+            document.getElementById('activities').classList.remove('hidden');
+            loadAllActivities();
+        }
+
+        // Load all activities with pagination
+        let currentPage = 1;
+        let hasMoreActivities = true;
+
+        function loadAllActivities(page = 1, append = false) {
+            const limit = 20;
+            const skip = (page - 1) * limit;
+            
+            fetch(`/api/activities?limit=${limit}&skip=${skip}`)
+                .then(response => response.json())
+                .then(activities => {
+                    const container = document.getElementById('allActivities');
+                    
+                    if (!append) {
+                        container.innerHTML = '';
+                    }
+
+                    if (activities.length === 0) {
+                        if (!append) {
+                            container.innerHTML = `
+                                <div class="text-center text-gray-500 py-8">
+                                    <i class="fas fa-info-circle text-3xl mb-4"></i>
+                                    <p class="text-lg">No activities found</p>
+                                </div>
+                            `;
+                        }
+                        hasMoreActivities = false;
+                        document.getElementById('loadMoreContainer').style.display = 'none';
+                        return;
+                    }
+
+                    activities.forEach(activity => {
+                        const activityItem = createDetailedActivityItem(activity);
+                        container.innerHTML += activityItem;
+                    });
+
+                    hasMoreActivities = activities.length === limit;
+                    document.getElementById('loadMoreContainer').style.display = hasMoreActivities ? 'block' : 'none';
+                })
+                .catch(error => {
+                    console.error('Error loading activities:', error);
+                    const container = document.getElementById('allActivities');
+                    if (!append) {
+                        container.innerHTML = `
+                            <div class="text-center text-red-500 py-8">
+                                <i class="fas fa-exclamation-triangle text-3xl mb-4"></i>
+                                <p class="text-lg">Error loading activities</p>
+                            </div>
+                        `;
+                    }
+                });
+        }
+
+        // Create detailed activity item for the activities page
+        function createDetailedActivityItem(activity) {
+            const icon = getActivityIcon(activity.type);
+            const color = getActivityColor(activity.type);
+            const timeAgo = getTimeAgo(activity.timestamp);
+            const formattedDate = new Date(activity.timestamp).toLocaleString();
+            
+            return `
+                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border-l-4 ${color.border || 'border-gray-300'}">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full ${color.bg} flex items-center justify-center">
+                            <i class="${icon} ${color.text} text-base"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">${activity.description}</p>
+                                <p class="text-xs text-gray-500">by ${activity.user} • ${timeAgo}</p>
+                                <p class="text-xs text-gray-400">${formattedDate}</p>
+                            </div>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${color.badge || 'bg-gray-100 text-gray-800'}">
+                                ${getActivityTypeLabel(activity.type)}
+                            </span>
+                        </div>
+                        ${activity.details && activity.details.amount ? `
+                            <div class="mt-2">
+                                <p class="text-sm text-green-600 font-medium">$${activity.details.amount}</p>
+                            </div>
+                        ` : ''}
+                        ${activity.details && activity.details.changes ? `
+                            <div class="mt-2 text-xs text-gray-600">
+                                <p class="font-medium">Changes:</p>
+                                <ul class="list-disc list-inside ml-2">
+                                    ${Object.entries(activity.details.changes).map(([key, value]) => 
+                                        `<li>${key}: ${value}</li>`
+                                    ).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get activity type label
+        function getActivityTypeLabel(type) {
+            const labels = {
+                'product_added': 'Product Added',
+                'product_updated': 'Product Updated',
+                'product_deleted': 'Product Deleted',
+                'order_placed': 'Order Placed',
+                'order_updated': 'Order Updated',
+                'user_registered': 'User Registered',
+                'login': 'Login',
+                'logout': 'Logout'
+            };
+            return labels[type] || 'Activity';
+        }
+
+        // Load more activities
+        function loadMoreActivities() {
+            if (hasMoreActivities) {
+                currentPage++;
+                loadAllActivities(currentPage, true);
+            }
+        }
+
+        // Refresh activities
+        function refreshActivities() {
+            currentPage = 1;
+            hasMoreActivities = true;
+            loadAllActivities(1, false);
+        }
+
+        // Filter activities
+        function filterActivities() {
+            const typeFilter = document.getElementById('activityTypeFilter').value;
+            const userFilter = document.getElementById('activityUserFilter').value;
+            const dateFilter = document.getElementById('activityDateFilter').value;
+
+            // Build query parameters
+            const params = new URLSearchParams();
+            if (typeFilter) params.append('type', typeFilter);
+            if (userFilter) params.append('user', userFilter);
+            if (dateFilter) params.append('date', dateFilter);
+
+            fetch(`/api/activities?${params.toString()}`)
+                .then(response => response.json())
+                .then(activities => {
+                    const container = document.getElementById('allActivities');
+                    const resultsSummary = document.getElementById('activityResultsSummary');
+                    const resultsCount = document.getElementById('activityResultsCount');
+
+                    container.innerHTML = '';
+
+                    // Show results summary
+                    resultsCount.textContent = activities.length;
+                    resultsSummary.classList.remove('hidden');
+
+                    if (activities.length === 0) {
+                        container.innerHTML = `
+                            <div class="text-center text-gray-500 py-8">
+                                <i class="fas fa-search text-3xl mb-4"></i>
+                                <p class="text-lg">No activities found matching your criteria</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    activities.forEach(activity => {
+                        const activityItem = createDetailedActivityItem(activity);
+                        container.innerHTML += activityItem;
+                    });
+
+                    // Hide load more button when filtering
+                    document.getElementById('loadMoreContainer').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error filtering activities:', error);
+                });
+        }
+
+        // Clear activity filters
+        function clearActivityFilters() {
+            document.getElementById('activityTypeFilter').value = '';
+            document.getElementById('activityUserFilter').value = '';
+            document.getElementById('activityDateFilter').value = '';
+            document.getElementById('activityResultsSummary').classList.add('hidden');
+            refreshActivities();
+        }
+
+        // Preview selected images
+        function previewImages(input) {
+            const previewContainer = document.getElementById('imagePreview');
+            previewContainer.innerHTML = '';
+            
+            if (input.files && input.files.length > 0) {
+                previewContainer.classList.remove('hidden');
+                
+                Array.from(input.files).forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const previewDiv = document.createElement('div');
+                        previewDiv.className = 'relative group';
+                        previewDiv.innerHTML = `
+                            <img src="${e.target.result}" alt="Preview ${index + 1}" 
+                                class="w-full h-24 object-cover rounded-lg border-2 border-gray-200">
+                            <div class="absolute top-1 left-1 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                                ${index === 0 ? 'Main' : index + 1}
+                            </div>
+                            <div class="absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
+                                onclick="removeImage(${index})">
+                                ×
+                            </div>
+                        `;
+                        previewContainer.appendChild(previewDiv);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            } else {
+                previewContainer.classList.add('hidden');
+            }
+        }
+
+        // Remove image from preview
+        function removeImage(index) {
+            const input = document.querySelector('input[name="images"]');
+            const dt = new DataTransfer();
+            
+            Array.from(input.files).forEach((file, i) => {
+                if (i !== index) {
+                    dt.items.add(file);
+                }
+            });
+            
+            input.files = dt.files;
+            previewImages(input);
+        }
+
+        // Clear image preview
+        function clearImagePreview() {
+            const previewContainer = document.getElementById('imagePreview');
+            if (previewContainer) {
+                previewContainer.innerHTML = '';
+                previewContainer.classList.add('hidden');
+            }
+        }
+
+        // Reset add product form
+        function resetAddProductForm() {
+            document.getElementById('addProductForm').reset();
+            clearImagePreview();
         }
     </script>
 </body>
