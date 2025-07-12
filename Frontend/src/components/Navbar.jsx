@@ -51,6 +51,7 @@ function Navbar() {
                     icon={faLaptop}
                     className="text-white text-xl group-hover:rotate-12 transition-transform duration-300"
                   />
+                  {/* <img src="./images/logo.jpg" alt="" /> */}
                 </div>
               </div>
               <div className="flex flex-col">
