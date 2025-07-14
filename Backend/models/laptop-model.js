@@ -79,14 +79,6 @@ const laptopDetailsSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    rating: {
-        type: Number,
-        default: 0
-    },
-    reviews: {
-        type: Number,
-        default: 0
-    },
     availability: {
         type: Boolean,
         default: true

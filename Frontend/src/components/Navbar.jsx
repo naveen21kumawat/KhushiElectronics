@@ -1,23 +1,24 @@
 import {
-    faArrowUp,
-    faBars,
-    faContactCard,
-    faHouse,
-    faLaptop,
-    faMapLocationDot,
-    faShop,
-    faStar,
-    faTimes,
+  faArrowUp,
+  faBars,
+  faContactCard,
+  faHouse,
+  faLaptop,
+  faMapLocationDot,
+  faShop,
+  faStar,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../index.css";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,29 +79,44 @@ function Navbar() {
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-1">
-                {navItems.map((item, index) => (
-                  <Link
-                    key={item.name}
-                    to={item.to}
-                    className="group relative px-4 py-2 rounded-xl transition-all duration-300"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="flex items-center space-x-2 text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
-                      <FontAwesomeIcon
-                        icon={item.icon}
-                        className="text-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
-                      />
-                      <span className="font-medium">{item.name}</span>
-                    </div>
+                {navItems.map((item, index) => {
+                  const isActive = location.pathname === item.to;
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.to}
+                      className={`group relative px-4 py-2 rounded-xl transition-all duration-300 ${
+                        isActive ? 'bg-blue-100 shadow-md' : ''
+                      }`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <div className={`flex items-center space-x-2 transition-colors duration-300 ${
+                        isActive 
+                          ? 'text-blue-700 font-semibold' 
+                          : 'text-gray-700 group-hover:text-blue-600'
+                      }`}>
+                        <FontAwesomeIcon
+                          icon={item.icon}
+                          className={`text-lg transition-transform duration-300 ${
+                            isActive 
+                              ? 'text-blue-600' 
+                              : 'group-hover:scale-110 group-hover:rotate-12'
+                          }`}
+                        />
+                        <span className="font-medium">{item.name}</span>
+                      </div>
 
-                    {/* Underline on hover */}
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
-                  </Link>
-                ))}
+                      {/* Underline on hover or active */}
+                      <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 origin-left rounded-full ${
+                        isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      }`}></div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Mobile Toggle */}
-              <div className="md:hidden">
+              <div className="md:hidden flex items-center gap-2">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -121,27 +137,40 @@ function Navbar() {
             >
               <div className="px-6 py-4 border-t border-gray-200">
                 <div className="space-y-2">
-                  {navItems.map((item, index) => (
-                    <Link
-                      key={item.name}
-                      to={item.to}
-                      className="group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300"
-                      style={{
-                        animationDelay: `${index * 0.1}s`,
-                        transform: isOpen ? "translateY(0)" : "translateY(-10px)",
-                        transition: `all 0.3s ease ${index * 0.1}s`,
-                      }}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <FontAwesomeIcon
-                        icon={item.icon}
-                        className="text-gray-600 group-hover:text-blue-600 transition-colors duration-300 text-lg"
-                      />
-                      <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
-                        {item.name}
-                      </span>
-                    </Link>
-                  ))}
+                  {navItems.map((item, index) => {
+                    const isActive = location.pathname === item.to;
+                    return (
+                      <Link
+                        key={item.name}
+                        to={item.to}
+                        className={`group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                          isActive ? 'bg-blue-100 shadow-md' : ''
+                        }`}
+                        style={{
+                          animationDelay: `${index * 0.1}s`,
+                          transform: isOpen ? "translateY(0)" : "translateY(-10px)",
+                          transition: `all 0.3s ease ${index * 0.1}s`,
+                        }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <FontAwesomeIcon
+                          icon={item.icon}
+                          className={`transition-colors duration-300 text-lg ${
+                            isActive 
+                              ? 'text-blue-600' 
+                              : 'text-gray-600 group-hover:text-blue-600'
+                          }`}
+                        />
+                        <span className={`font-medium transition-colors duration-300 ${
+                          isActive 
+                            ? 'text-blue-700 font-semibold' 
+                            : 'text-gray-700 group-hover:text-blue-600'
+                        }`}>
+                          {item.name}
+                        </span>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>

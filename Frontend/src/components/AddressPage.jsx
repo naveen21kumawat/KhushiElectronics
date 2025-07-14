@@ -11,7 +11,6 @@ import {
   Truck
 } from 'lucide-react';
 import React, { useState } from 'react';
-import mapImage from '/images/map.png';
 
 const AddressPage = () => {
   const [activeTab, setActiveTab] = useState('location');
@@ -66,16 +65,7 @@ const AddressPage = () => {
             >
               Location & Map
             </button>
-            {/* <button
-              onClick={() => setActiveTab('contact')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                activeTab === 'contact'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              Contact Info
-            </button> */}
+        
             <button
               onClick={() => setActiveTab('hours')}
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
@@ -101,11 +91,11 @@ const AddressPage = () => {
               
               <div className="relative">
                 <img
-                  src={mapImage}
+                  src="/images/map.png"
                   alt="Store Location Map"
-                  className="w-full h-80 object-cover"
+                  className="w-full h-80 object-cover p-4 rounded-md"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div> */}
                 
                 {/* Map Overlay Info */}
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">

@@ -1,5 +1,6 @@
 import {
   ArrowLeft,
+  Battery,
   CheckCircle,
   Clock,
   Cpu,
@@ -91,21 +92,28 @@ function ProductPage() {
     );
   }
 
-  // Create multiple images for gallery (using the same image for demo)
-  const productImages = [
-    productDetails.image || "https://via.placeholder.com/600x400",
-    productDetails.image || "https://via.placeholder.com/600x400",
-    productDetails.image || "https://via.placeholder.com/600x400",
-    productDetails.image || "https://via.placeholder.com/600x400"
-  ];
+  // Use all images from the backend (array)
+  const productImages = Array.isArray(productDetails.image) && productDetails.image.length > 0
+    ? productDetails.image
+    : ["https://via.placeholder.com/600x400"];
 
+  // Expanded specs from backend model
   const specs = [
-    { icon: Cpu, label: "Processor", value: productDetails.processor || "Intel Core i5" },
-    { icon: Database, label: "RAM", value: `${productDetails.ram || 8} GB DDR4` },
-    { icon: HardDrive, label: "Storage", value: productDetails.storage || "256GB SSD" },
-    { icon: Monitor, label: "Display", value: productDetails.display || "15.6\" Full HD" },
-    { icon: Zap, label: "Graphics", value: productDetails.graphics || "Integrated Graphics" },
-    { icon: Info, label: "Condition", value: "Refurbished & Tested" }
+    { icon: Cpu, label: "Processor", value: productDetails.processor },
+    { icon: Database, label: "RAM", value: `${productDetails.ram} GB` },
+    { icon: HardDrive, label: "Storage", value: productDetails.storage },
+    { icon: Monitor, label: "Screen Size", value: productDetails.ScreenSize },
+    { icon: Zap, label: "Graphics", value: productDetails.graphics },
+    { icon: Info, label: "Model", value: productDetails.model },
+    { icon: Info, label: "Brand", value: productDetails.brand },
+    { icon: Info, label: "OS", value: productDetails.os },
+    { icon: Info, label: "Generation", value: productDetails.generation },
+    { icon: Battery, label: "Battery", value: productDetails.battery },
+    { icon: Shield, label: "Warranty", value: productDetails.warranty },
+    { icon: Info, label: "Availability", value: productDetails.availability ? "In Stock" : "Out of Stock" },
+    { icon: Info, label: "Release Date", value: productDetails.releaseDate ? new Date(productDetails.releaseDate).toLocaleDateString() : "-" },
+    { icon: Info, label: "Added Date", value: productDetails.addedDate ? new Date(productDetails.addedDate).toLocaleDateString() : "-" },
+    { icon: Info, label: "Discount", value: productDetails.discount ? `${productDetails.discount}%` : "0%" },
   ];
 
   return (
@@ -182,7 +190,7 @@ function ProductPage() {
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
                   {productDetails.name}
                 </h1>
-                <div className="flex items-center gap-4 mb-4">
+                {/* <div className="flex items-center gap-4 mb-4">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
@@ -190,7 +198,7 @@ function ProductPage() {
                     <span className="text-sm text-gray-600 ml-2">(4.8/5)</span>
                   </div>
                   <span className="text-sm text-gray-500">• 127 reviews</span>
-                </div>
+                </div> */}
                 <p className="text-gray-600 text-lg">
                   Premium refurbished laptop with guaranteed quality and performance
                 </p>
@@ -200,10 +208,12 @@ function ProductPage() {
               <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100">
                 <div className="flex items-baseline gap-3">
                   <span className="text-4xl font-bold text-blue-600">₹{productDetails.price}</span>
-                  <span className="text-lg text-gray-500 line-through">₹{parseInt(productDetails.price) + 15000}</span>
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium">
-                    Save ₹15,000
-                  </span>
+                  <span className="text-lg text-gray-500 line-through">₹{productDetails.originalPrice}</span>
+                  {productDetails.discount > 0 && (
+                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium">
+                      Save {productDetails.discount}%
+                    </span>
+                  )}
                 </div>
                 <p className="text-sm text-gray-600 mt-2">Inclusive of all taxes</p>
               </div>
@@ -216,7 +226,7 @@ function ProductPage() {
                 </div>
                 <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                   <Shield className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium">1 Year Warranty</span>
+                  <span className="text-sm font-medium">{productDetails.warranty || "Warranty info not available"}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                   <Truck className="w-5 h-5 text-purple-600" />
@@ -250,7 +260,7 @@ function ProductPage() {
             {specs.map((spec, index) => (
               <div key={index} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
                 <div className="p-2 bg-blue-100 rounded-lg">
-                  <spec.icon className="w-6 h-6 text-blue-600" />
+                  {spec.icon ? <spec.icon className="w-6 h-6 text-blue-600" /> : null}
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">{spec.label}</p>

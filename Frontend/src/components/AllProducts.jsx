@@ -9,7 +9,7 @@ function AllProducts() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState('grid');
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [selectedBrands, setSelectedBrands] = useState([]);
 
@@ -291,14 +291,14 @@ function ProductCard({ laptop, viewMode }) {
           <div className="flex-1 p-6">
             <div className="flex justify-between items-start mb-2">
               <h3 className="text-xl font-bold text-gray-800 line-clamp-2">{laptop.name}</h3>
-              <button
+              {/* <button
                 onClick={() => setIsLiked(!isLiked)}
                 className={`p-2 rounded-full transition-colors ${
                   isLiked ? 'text-red-500' : 'text-gray-400 hover:text-red-500'
                 }`}
               >
                 <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
-              </button>
+              </button> */}
             </div>
             <p className="text-2xl font-bold text-blue-600 mb-2">₹{laptop.price}</p>
             <p className="text-gray-600 text-sm mb-4 line-clamp-2">

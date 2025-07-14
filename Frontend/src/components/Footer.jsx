@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -69,24 +68,24 @@ function Footer() {
             <h4 className="text-lg font-semibold text-blue-400">Support</h4>
             <ul className="space-y-2">
               <li>
-                <a to="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
+                <Link to="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a to="/terms" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
+                <Link to="/terms" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a to="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
+                <Link to="/warranty" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
                   Warranty Info
-                </a>
+                </Link>
               </li>
               <li>
-                <a to="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
+                <Link to="/contact-support" className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">
                   Contact Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
