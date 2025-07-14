@@ -24,7 +24,7 @@ const About = () => {
     name: "Khushi Electronics",
     tagline: "Your Trusted Partner for Premium Refurbished Laptops",
     phone: "+91 98765 43210",
-    email: "khushielectronics15@gmail.com",
+    email: "khushilaptops15@gmail.com",
     address: "G-44, 45 Ganpati Plaza, M.I. Road, Jaipur, Rajasthan 302001",
     hours: "Monday - Saturday: 10:00 AM - 8:00 PM"
   };
@@ -336,8 +336,7 @@ const About = () => {
             <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">Development Team</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our dedicated team of experts is committed to providing you with the best 
-                refurbished laptops and exceptional customer service.
+                 Connect For Help
               </p>
             </div>
 

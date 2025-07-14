@@ -53,7 +53,7 @@ function Hero() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-3">
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50">
                 <Star className="w-4 h-4 text-yellow-500 fill-current" />
                 <span className="text-sm font-medium text-gray-700">4.0/5 Rating</span>
@@ -66,7 +66,7 @@ function Hero() {
                 <Award className="w-4 h-4 text-purple-500" />
                 <span className="text-sm font-medium text-gray-700">Certified Quality</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Features Grid */}
             <div className="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0">

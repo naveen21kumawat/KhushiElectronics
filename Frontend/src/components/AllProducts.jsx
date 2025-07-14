@@ -70,20 +70,20 @@ function AllProducts() {
     }
 
     // Sort
-    filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'price-low':
-          return parseInt(a.price.replace(/[^\d]/g, '')) - parseInt(b.price.replace(/[^\d]/g, ''));
-        case 'price-high':
-          return parseInt(b.price.replace(/[^\d]/g, '')) - parseInt(a.price.replace(/[^\d]/g, ''));
-        case 'newest':
-          return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
-        default:
-          return 0;
-      }
-    });
+    // filtered.sort((a, b) => {
+    //   switch (sortBy) {
+    //     case 'name':
+    //       return a.name.localeCompare(b.name);
+    //     case 'price-low':
+    //       return parseInt(a.price.replace(/[^\d]/g, '')) - parseInt(b.price.replace(/[^\d]/g, ''));
+    //     case 'price-high':
+    //       return parseInt(b.price.replace(/[^\d]/g, '')) - parseInt(a.price.replace(/[^\d]/g, ''));
+    //     case 'newest':
+    //       return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+    //     default:
+    //       return 0;
+    //   }
+    // });
 
     setFilteredLaptops(filtered);
   };
@@ -135,7 +135,7 @@ function AllProducts() {
 
         {/* Filters and Search */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-blue-100">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -149,7 +149,7 @@ function AllProducts() {
             </div>
 
             {/* Sort */}
-            <div>
+            {/* <div>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
@@ -160,7 +160,7 @@ function AllProducts() {
                 <option value="price-high">Price: High to Low</option>
                 <option value="newest">Newest First</option>
               </select>
-            </div>
+            </div> */}
 
             {/* Price Range */}
             <div className="flex gap-2">
@@ -181,7 +181,7 @@ function AllProducts() {
             </div>
 
             {/* View Mode */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-3 rounded-lg transition-colors ${
