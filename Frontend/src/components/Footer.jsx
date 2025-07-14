@@ -143,7 +143,7 @@ function Footer() {
                   <div className="flex flex-col items-start">
                     <span className="text-xs font-semibold text-white">Naveen Kumawat</span>
                     <a
-                      to="https://naveencodes.netlify.app/"
+                      href="https://naveencodes.netlify.app/"
                       className="text-xs text-blue-400 hover:underline"
                     >
                       Contact
@@ -161,7 +161,7 @@ function Footer() {
                   <div className="flex flex-col items-start">
                     <span className="text-xs font-semibold text-white">Manish Prajapati</span>
                     <a
-                      to="https://mypersonalpfolio.netlify.app/"
+                      href="https://mypersonalpfolio.netlify.app/"
                       className="text-xs text-blue-400 hover:underline"
                     >
                       Contact

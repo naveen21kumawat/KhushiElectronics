@@ -64,13 +64,15 @@ const About = () => {
       name: "Naveen Kumawat",
       role: "Designing And Development",
       image: "https://naveencodes.netlify.app/naveen.png",
-      bio: "Expert in desigining and development services"
+      bio: "Expert in desigining and development services",
+      url : "https://naveencodes.netlify.app/"
     },
     {
       name: "Manish Prajapati",
       role: "Database And Product Management",
       image: "https://mypersonalpfolio.netlify.app/1707530238951.jpg",
-      bio: "Dedicated to providing exceptional customer service"
+      bio: "Dedicated to providing exceptional customer service",
+      url : "https://mypersonalpfolio.netlify.app/"
     }
   ];
 
@@ -352,6 +354,7 @@ const About = () => {
                   <h3 className="text-xl font-bold text-gray-800 mb-2">{member.name}</h3>
                   <p className="text-blue-600 font-medium mb-4">{member.role}</p>
                   <p className="text-gray-600">{member.bio}</p>
+                  <a className='text-blue-400 font-bold' href={member.url}>Click Here To  Contact</a>
                 </div>
               ))}
             </div>
