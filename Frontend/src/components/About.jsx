@@ -340,6 +340,8 @@ const About = () => {
               </p>
             </div>
 
+            {/*  */}
+
             <div className="grid md:grid-cols-2 gap-8">
               {team.map((member, index) => (
                 <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 text-center">
